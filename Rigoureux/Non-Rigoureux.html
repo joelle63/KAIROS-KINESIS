@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Kinesis – Choix du personnage</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- BASE ---------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #ffffff;
+}
+
+/* ---------- BANDEAU ---------- */
+.top-banner {
+    height: 110px;
+    width: 100%;
+    background-image: url("Images/Bandeau.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ---------- CONTENU CENTRAL ---------- */
+main {
+    position: relative;
+    z-index: 2;
+    padding: 20px 120px;
+}
+
+/* ---------- LIGNE COURBE ---------- */
+.characters-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1400px;
+}
+
+/* ---------- BLOCS ---------- */
+.img-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- IMAGES ---------- */
+.img-block img {
+    max-width: 260px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+/* ---------- ZOOM AVANT + PRIORITÉ ---------- */
+.img-block:hover {
+    z-index: 10;
+}
+
+.img-block:hover img {
+    transform: scale(1.8);
+}
+
+/* ---------- CAPTION ---------- */
+.caption {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #344D59;
+    text-align: center;
+}
+
+/* ---------- OFFSETS (COURBE) ---------- */
+.pos-1 { transform: translateY(160px); }
+.pos-2 { transform: translateY(50px); }
+.pos-3 { transform: translateY(-40px); }
+.pos-4 { transform: translateY(-40px); }
+.pos-5 { transform: translateY(50px); }
+.pos-6 { transform: translateY(160px); }
+
+/* ---------- QUESTION ---------- */
+.grid-intro {
+    font-size: 27px;
+    color: #344D59;
+    text-align: center;
+    margin-top: 80px;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-banner"></header>
+
+<main>
+
+    <div class="characters-line">
+
+        <div class="img-block pos-1">
+           <a id="lien-che" href="#">   
+              <img src="Images/Audace-Confrontante.png" alt="">
+           </a>
+        </div>
+
+        <div class="img-block pos-2">
+            <a id="lien-walt" href="#">
+                <img src="Images/Protecteur-Actif.png" alt="">
+            </a>
+        </div>
+
+        <div class="img-block pos-3">
+          <a id="lien-andersen" href="#">
+             <img src="Images/Intuition-Federatrice.png" alt="">
+          </a>
+        </div>
+
+        <div class="img-block pos-4">
+            <a id="lien-leonard" href="#">
+                <img src="Images/Intuition-Conceptuelle.png" alt="">
+            </a>
+        </div>
+
+       <div class="img-block pos-5">
+         <a id="lien-audacieux2" href="#">
+                <img src="Images/Audace-Ambitieuse.png" alt="">
+            </a>
+       </div>
+
+          <div class="img-block pos-6">
+              <a id="lien-affectif2" href="#">
+                 <img src="Images/Affectif-Appaisant.png" alt="">
+              </a>
+          </div>
+
+    </div>
+
+    <div class="grid-intro">
+        Quel personnage aimeriez-vous rencontrer ?
+    </div>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Page cible pour Léonard
+    const leonardPage = "Intuition-Structuree/Intuition-Structuree.html";
+
+    // Page cible pour Andersen
+    const andersenPage = "Exigence-Creative/Exigence-Creative.html";
+
+
+    // Lien Léonard : navigation autorisée
+    const lienLeonard = document.getElementById("lien-leonard");
+    if (lienLeonard) {
+        lienLeonard.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = leonardPage;
+        });
+    }
+
+
+    // Lien Andersen : navigation autorisée
+    const lienAndersen = document.getElementById("lien-andersen");
+    if (lienAndersen) {
+        lienAndersen.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = andersenPage;
+        });
+    }
+
+
+    // Tous les autres personnages : erreur
+    const tousLesLiens = document.querySelectorAll(".img-block a");
+
+    tousLesLiens.forEach(lien => {
+        if (lien.id !== "lien-leonard" && lien.id !== "lien-andersen") {
+            lien.addEventListener("click", (e) => {
+                e.preventDefault();
+                alert("Ce parcours n’est pas encore disponible. Veuillez sélectionner Léonard de Vinci ou Christian Andersen.");
+            });
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
