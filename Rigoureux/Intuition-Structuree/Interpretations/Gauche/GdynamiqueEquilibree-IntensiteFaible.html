@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos résultats – Rigueur & Intuition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body {
+margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #FEFDF6;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+/* ===== BANDEAU ===== */
+header {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    background-color: #FEFCF8;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #243b44;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== SOUS-TITRE ===== */
+.subtitle {
+    text-align: center;
+    padding: 22px 20px;
+}
+
+.subtitle h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE METRICS + IMAGES ===== */
+.metrics-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 30px 30px;
+    align-items: center;
+}
+
+/* ===== IMAGES ===== */
+.avatar {
+    width: 260px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===== METRICS ===== */
+.metrics {
+    background: #ffffff;
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 30px;
+    border-radius: 6px;
+    border-left: 6px solid #1f1f1f;
+}
+
+.metrics p {
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.metrics strong {
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE TEXTE (MÊME GRILLE) ===== */
+.text-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px 80px;
+}
+
+.main-content {
+    grid-column: 2;
+}
+
+/* ===== BLOCS TEXTE ===== */
+.section {
+    background: #f5f5f2;
+    padding: 1px 20px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+.section h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+.section p {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.section ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+}
+
+.section li {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ===== LIEN VERS EXEMPLES ===== */
+.examples-link {
+    text-align: center;
+    margin: 40px 0 10px;
+}
+
+.btn-examples {
+    display: inline-block;
+    padding: 14px 26px;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.btn-examples:hover {
+    background: #1b2f36;
+}
+
+/* ===== NOUVEAUX BOUTONS ===== */
+.bottom-buttons {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.bottom-buttons button {
+    display: inline-block;
+    padding: 14px 26px;
+    margin: 10px 10px 0;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bottom-buttons button:hover {
+    background: #1b2f36;
+}
+
+/* ===== FOOTER ===== */
+.footer-note {
+    margin-top: 15px;
+    padding-top: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1f1f1f;
+    border-top: 1px solid #d8d8d8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="Images/Bandeau.png" alt="">
+    <div class="banner-title"></div>
+</header>
+
+<section class="subtitle">
+    <h2>XXXXXXXXXXXX</h2>
+</section>
+
+<!-- ===== METRICS + IMAGES ===== -->
+<section class="metrics-row">
+
+    <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Léonard de Vinci">
+
+    <div class="metrics">
+        <p>
+        <strong>Orientation :</strong>
+        Intuition <span id="pctIntuition">0</span> % /
+        Rigueur <span id="pctRigueur">0</span> %
+        </p>
+
+       <p>
+       <strong>Écart :</strong>
+       <span id="ecartOrientation">0</span> %
+       <span id="libelleEcart"></span>
+       </p>
+
+<p>
+  <strong>Intensité :</strong>
+  Intuition <span id="pointsIntuition">0</span> points /
+  Rigueur <span id="pointsRigueur">0</span> points
+</p>
+
+<p>
+  <strong>Engagement total :</strong>
+  <span id="engagementTotal">0</span> points
+</p>
+
+    </div>
+
+    <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Marie Curie">
+
+</section>
+
+<!-- ===== TEXTE ===== -->
+<section class="text-row">
+<div class="main-content">
+
+    <div class="section">
+        <h3>Votre équilibre actuel</h3>
+        <p>Votre fonctionnement repose actuellement sur une rigueur totalement dominante, sans mobilisation observable du pôle intuitif. L’écart maximal entre les deux dynamiques dessine une polarisation nette : la stabilité, la méthode et le cadre constituent ici l’unique point d’appui dans la manière d’agir et de se positionner. Dans ce type de configuration, la rigueur ne joue pas un rôle de soutien ; elle devient le mode de fonctionnement principal, voire exclusif, au détriment de la vision globale, de l’exploration et de la souplesse intérieure.</p>
+        <p>Cette lecture est toutefois à nuancer par les niveaux d’intensité relevés. L’énergie globale engagée reste faible : la rigueur est présente mais modérément investie, et l’intuition apparaît totalement inactive dans les réponses. Cela suggère un fonctionnement plus contenu que conquérant : la personne ne déploie pas une grande force d’action, mais privilégie un maintien du cadre, une prudence et une recherche de stabilité, comme si l’objectif principal était d’éviter le désordre ou l’incertitude plutôt que d’ouvrir de nouveaux possibles.</p>
+        <p>Le contraste avec les choix symboliques est significatif. Le choix de la Suisse confirme l’attrait pour la fiabilité et la structure, mais la présence de Léonard de Vinci indique qu’un potentiel intuitif et créatif existe en arrière-plan, même s’il n’est pas mobilisé dans le fonctionnement actuel. L’intuition ne semble donc pas absente : elle apparaît plutôt tenue à distance, non autorisée ou non utilisée dans le présent.</p>
+        <p>On observe ainsi une posture de sécurité et de cadrage, dans laquelle l’action se réduit à ce qui est maîtrisable et contrôlable. L’équilibre n’est pas recherché entre intuition et rigueur : il se construit uniquement sur la solidité du cadre, avec une dynamique intuitive en réserve. Ce profil peut indiquer une phase où la priorité est de stabiliser, de contenir ou de se protéger, avant de pouvoir réouvrir progressivement l’accès à une vision plus libre et créative.</p>
+    </div>
+
+    <div class="section">
+        <h3>L’intuition comme moteur principal</h3>
+        <ul>
+            <li>Explorer plusieurs pistes avant de trancher</li>
+            <li>Relier des idées éloignées</li>
+            <li>Se projeter dans des possibles</li>
+            <li>Chercher le sens global avant les détails</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>La rigueur comme structure</h3>
+        <ul>
+            <li>Vérification de la cohérence</li>
+            <li>Mise en forme et structuration</li>
+            <li>Passage de l’idée à l’action</li>
+        </ul>
+    </div>
+
+    <!-- ==========================================================
+         SECTION PERSONNALISÉE
+         ========================================================== -->
+    <div class="section">
+        <h3>Les points d'attention qui vous sont propres :</h3>
+        <ul>
+            <li><span id="freinDetecte">–</span></li>
+            <li><span id="atoutDetecte">–</span></li>
+        </ul>
+    </div>
+
+    <!-- ==========================================================
+         ZONES DE VIGILANCE
+         ========================================================== -->
+    <div class="section">
+        <h3>Les zones de vigilance de cette dynamique</h3>
+        <p>Cette dynamique fonctionne pleinement lorsqu’elle peut explorer, percevoir et affiner progressivement ce qui émerge. Elle devient plus fragile dans certains contextes auquels vous avez peut-être déjà été confrontés :</p>
+        <ul>
+            <li>Quand une validation immédiate est exigée, ou quand des garanties sont demandées alors que l’intuition est encore en phase de maturation.</li>
+            <li>Dans des environnements trop rigides ou trop procéduraux, où l’exécution prime sur l’exploration.</li>
+            <li>Quand l’énergie reste trop longtemps dans l’abstrait, sans confrontation au terrain, aux contraintes ou à des retours concrets.</li>
+            <li>En situation d’isolement intellectuel, sans échanges, contradictions ou miroir extérieur,les idées risquent de ne jamais se concrétiser.</li>
+            <li>Quand la stimulation est trop faible, avec des tâches répétitives ou des problèmes trop simples, qui n’activent pas la capacité de projection.</li>
+            <li>Quand l’exploration ne débouche pas sur une décision, ce qui peut générer dispersion et fatigue mentale.</li>
+            <li>Quand la réfléxion prend toute la place, au point de raffiner sans fin au lieu de tester : l'énergie se mentalise, et perd son élan.</li>
+       </ul>  
+    </div>
+
+    <!-- ==========================================================
+         PLEIN POTENTIEL
+         ========================================================== -->
+    <div class="section">
+        <h3>Quand cette énergie trouve son plein potentiel, elle permet : </h3>
+        <ul>
+            <li>D'imaginer des solutions nouvelles et de les tester juste assez pour les sécuriser</li>
+            <li>D'identifier des tendances ou des risques avant les autres, et les exprimer avec suffisamment de rigueur pour être crédible</li>
+            <li>De voir des solutions non conventionnelles et les transformer en actions concrètes</li>
+            <li>De s’exprimer pleinement dans des environnements agiles, où l’expérimentation rapide est possible et valorisée</li>
+        </ul>
+        <p></p>
+        <h3>C'est une énergie qui favorise la perspicacité tout en gardant le sens des réalité.</h3>
+    </div>
+
+<!--<div class="examples-link">
+    <a href="Exemples.html" class="btn-examples">
+        Découvrir des figures ayant pu incarner cette dynamique
+    </a>
+</div> -->
+
+
+<!-- ===== NOUVEAUX BOUTONS AJOUTÉS ===== -->
+<div class="bottom-buttons">
+    <button onclick="window.location.href='../../../index.html'">Faire un autre test</button>
+    <button onclick="alert('Page en cours de développement')">Autre</button>
+    <button onclick="alert('Page en cours de développement')">
+        Découvrir des figures ayant pu incarner cette dynamique
+    </button>
+</div>
+
+    <div class="footer-note">
+        Cette lecture reflète votre dynamique actuelle. Elle n'est en aucun cas figée dans le temps. l'intérêt est de comprendre comment la vivre en s'appyant sur les forces et en minimisant les tensions.
+    </div>
+
+</div>
+</section>
+
+<script>
+  // --- Lecture depuis la page test ---
+  const pctRigueur = parseInt(localStorage.getItem("orientationGauche"), 10) || 0;
+  const pctIntuition = parseInt(localStorage.getItem("orientationDroite"), 10) || 0;
+  const ecartOrientation = parseInt(localStorage.getItem("ecartOrientation"), 10) || 0;
+
+  const libelleEcartEl = document.getElementById("libelleEcart");
+
+  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
+  } else {
+     libelleEcartEl.textContent = " – à définir";
+  }
+
+  const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
+  const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
+
+  const engagementTotal = pointsRigueur + pointsIntuition;
+
+  document.getElementById("pctIntuition").textContent = pctIntuition;
+  document.getElementById("pctRigueur").textContent = pctRigueur;
+  document.getElementById("ecartOrientation").textContent = ecartOrientation;
+
+  document.getElementById("pointsIntuition").textContent = pointsIntuition;
+  document.getElementById("pointsRigueur").textContent = pointsRigueur;
+  document.getElementById("engagementTotal").textContent = engagementTotal;
+
+
+  /* ==========================================================
+     RÉCUPÉRATION DU TABLEAU COMPLET DEPUIS LA PAGE RÉSULTATS
+     ========================================================== */
+
+  const tableHTML = localStorage.getItem("tableResultatsHTML") || "";
+
+  let tableDoc = null;
+  let tableElement = null;
+  let tableRows = [];
+
+  if (tableHTML.trim() !== "") {
+      const parser = new DOMParser();
+      tableDoc = parser.parseFromString(tableHTML, "text/html");
+      tableElement = tableDoc.querySelector("table");
+
+      if (tableElement) {
+          tableRows = tableElement.querySelectorAll("tbody tr");
+      }
+  }
+
+
+  /* ==========================================================
+     HELPERS
+     ========================================================== */
+
+  const getText = (cell) => (cell && cell.textContent ? cell.textContent.trim() : "");
+  const toInt = (txt, fallback = 0) => {
+      const s = (txt ?? "").toString().trim();
+      if (s === "") return fallback;
+      const n = parseInt(s, 10);
+      return Number.isFinite(n) ? n : fallback;
+  };
+
+
+  /* ==========================================================
+     ATOUT :
+     Partie GAUCHE uniquement = intensité max
+     ========================================================== */
+
+  let meilleurAtoutGauche = "";
+  let meilleureIntensiteGauche = -Infinity;
+
+  tableRows.forEach(row => {
+      const cells = row.cells;
+      if (!cells || cells.length < 12) return;
+
+      const texteG = getText(cells[0]);
+      const atoutG = getText(cells[1]) || texteG;
+      const intensiteG = toInt(getText(cells[4]), 0);
+
+      if (atoutG && intensiteG > meilleureIntensiteGauche) {
+          meilleureIntensiteGauche = intensiteG;
+          meilleurAtoutGauche = atoutG;
+      }
+  });
+
+
+  /* ==========================================================
+     FREIN (AVEC BONUS) :
+     Partie DROITE uniquement = intensité max
+     ========================================================== */
+
+  let capaciteFreinDetectee = "";
+  let freinDetecte = "";
+
+  let meilleureIntensiteDroite = -Infinity;
+  let meilleureValeurDroite = -Infinity;
+
+  tableRows.forEach(row => {
+      const cells = row.cells;
+      if (!cells || cells.length < 12) return;
+
+      const texteD = getText(cells[6]);
+      const freinD = getText(cells[8]);
+      const valD = toInt(getText(cells[9]), 0);
+      const intD = toInt(getText(cells[10]), 0);
+
+      if (!texteD) return;
+
+      if (intD > meilleureIntensiteDroite) {
+          meilleureIntensiteDroite = intD;
+          meilleureValeurDroite = valD;
+          capaciteFreinDetectee = texteD;
+          freinDetecte = freinD || "";
+          return;
+      }
+
+      if (intD === meilleureIntensiteDroite && valD > meilleureValeurDroite) {
+          meilleureValeurDroite = valD;
+          capaciteFreinDetectee = texteD;
+          freinDetecte = freinD || "";
+      }
+  });
+
+  const freinFinal = freinDetecte
+      ? freinDetecte
+      : (capaciteFreinDetectee ? "(Frein non renseigné pour : " + capaciteFreinDetectee + ")" : "–");
+
+
+  /* ==========================================================
+     INJECTION DANS LA SECTION PERSONNALISÉE
+     ========================================================== */
+
+  document.getElementById("freinDetecte").textContent = freinFinal;
+  document.getElementById("atoutDetecte").textContent = meilleurAtoutGauche || "–";
+
+</script>
+
+</body>
+</html>

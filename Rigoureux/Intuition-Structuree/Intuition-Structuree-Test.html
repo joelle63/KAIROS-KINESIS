@@ -219,7 +219,6 @@ header img {
             <div id="progressBar" class="progress-bar"></div>
         </div>
 
-        <!-- ===== TEXTE À LA PLACE DU PAVÉ DE SCORES ===== -->
         <p style="text-align:center; font-size:16px; font-weight:600; margin-bottom:70px;">
             L'objectif de ce test est de mesurer comment, dans votre comportement actuel, la rigueur dialogue avec l'intuition.
         </p>
@@ -525,6 +524,8 @@ header img {
 localStorage.removeItem("tableResultatsHTML");
 localStorage.removeItem("intensitesQuestions");
 localStorage.removeItem("orientationsQuestions");
+localStorage.removeItem("nbReponsesEffectives");
+localStorage.removeItem("intensiteGlobale");
 
 localStorage.setItem("orientationGauche", "0");
 localStorage.setItem("orientationDroite", "0");
@@ -546,8 +547,6 @@ const totalQuestions = 13;
 
 /* ==========================================================
    REDIRECTION FINALE (TEMPORAIRE)
-   TODO : redirection à modifier quand test opérationnel
-   Pour le moment, on force systématiquement Resultat.html
    ========================================================== */
 function redirectToFinalPage() {
     window.location.href = "Resultat.html";
@@ -627,25 +626,51 @@ function setupQuestion(qId, nextBtnId, nextQuestionId, progressPercent) {
         const ecartIntensite = Math.abs(intensiteDroite - intensiteGauche);
 
         const total = intensiteGauche + intensiteDroite;
-        let oG = 0, oV = 0, eO = 0;
+        let oG = 0, oD = 0, eO = 0;
 
         if (total > 0) {
             oG = Math.round((intensiteGauche / total) * 100);
-            oV = Math.round((intensiteDroite / total) * 100);
-            eO = Math.abs(oG - oV);
+            oD = Math.round((intensiteDroite / total) * 100);
+            eO = Math.abs(oG - oD);
+        }
+
+        // ==========================================================
+        // CORRECTION : ORIENTATION QUESTION PAR QUESTION
+        // Avant : on stockait oG/oD (cumulés) => faux pour le tableau
+        // Maintenant : on stocke une orientation réelle par question
+        // ==========================================================
+        let oQuestionG = 0;
+        let oQuestionD = 0;
+
+        if (importance === 0) {
+            oQuestionG = 0;
+            oQuestionD = 0;
+        }
+        else if (importance === 1) {
+            oQuestionG = 50;
+            oQuestionD = 50;
+        }
+        else if (importance !== null && choix !== null) {
+            if (choixIndex === 0) {
+                oQuestionG = 100;
+                oQuestionD = 0;
+            } else {
+                oQuestionG = 0;
+                oQuestionD = 100;
+            }
         }
 
         orientationsQuestions.push({
-            Gauche: oG,
-            Droite: oV
+            Gauche: oQuestionG,
+            Droite: oQuestionD
         });
 
         document.getElementById("orientationGauche").textContent = oG + " %";
-        document.getElementById("orientationDroite").textContent = oV + " %";
+        document.getElementById("orientationDroite").textContent = oD + " %";
         document.getElementById("ecartOrientation").textContent = eO + " %";
 
         localStorage.setItem("orientationGauche", oG);
-        localStorage.setItem("orientationDroite", oV);
+        localStorage.setItem("orientationDroite", oD);
         localStorage.setItem("ecartOrientation", eO);
 
         document.getElementById("intensiteGauche").textContent = intensiteGauche;
@@ -699,10 +724,6 @@ function setupQuestion(qId, nextBtnId, nextQuestionId, progressPercent) {
             localStorage.setItem("intensitesQuestions", JSON.stringify(intensitesQuestions));
             localStorage.setItem("orientationsQuestions", JSON.stringify(orientationsQuestions));
 
-            // ==========================================================
-            // REDIRECTION FINALE
-            // TODO : redirection à modifier quand test opérationnel
-            // ==========================================================
             redirectToFinalPage();
         }
     });

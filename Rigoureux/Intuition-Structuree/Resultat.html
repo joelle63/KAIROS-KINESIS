@@ -141,10 +141,22 @@ DEBUG (temporaire) : en attente de données...
 
     <tbody id="tableBody">
         <tr>
-            <td>Consciencieux</td><td></td><td>Accordez-vous plus de temps pour réfléchir aux conséquences de vos choix.
-Demandez-vous ce que cela implique concrètement en termes d’énergie, de contraintes, et d’impact sur les autres aspects de votre vie.</td><td>13</td><td></td><td></td>
-            <td>Curieux</td><td></td><td></td><td>13</td><td></td><td></td>
-        </tr>
+    <td>Consciencieux</td>
+    <td>A</td>
+    <td>Accordez-vous plus de temps pour réfléchir aux conséquences de vos choix.
+    Demandez-vous ce que cela implique concrètement en termes d’énergie, de contraintes, et d’impact sur les autres aspects de votre vie.</td>
+    <td>13</td>
+    <td></td>
+    <td></td>
+
+    <td>Curieux</td>
+    <td></td>
+    <td>La stabilité est une force, mais vous gagneriez à vous ouvrir davantage à de nouvelles perspectives.</td>
+    <td>13</td>
+    <td></td>
+    <td></td>
+</tr>
+
         <tr>
             <td>Responsable</td><td></td><td></td><td>12</td><td></td><td></td>
             <td>Autonome</td><td></td><td></td><td>6</td><td></td><td></td>
@@ -178,7 +190,7 @@ Demandez-vous ce que cela implique concrètement en termes d’énergie, de cont
             <td>Observateur</td><td></td><td></td><td>4</td><td></td><td></td>
         </tr>
         <tr>
-            <td>Persévérant</td><td></td><td></td><td>8</td><td></td><td></td>
+            <td>Persévérant</td><td>Votre persévérance est une ressource forte, mais elle peut vous conduire à maintenir une direction trop longtemps, même lorsqu'elle n'est plus optimale.</td><td></td><td>8</td><td></td><td></td>
             <td>Analytique</td><td></td><td></td><td>8</td><td></td><td></td>
         </tr>
         <tr>
@@ -328,32 +340,97 @@ document.getElementById("intensiteDroite").textContent = String(sumD);
 
 
 /* ==========================================================
+   NOUVEAU CRITÈRE : NOMBRE DE RÉPONSES EFFECTIVES
+   Une réponse est comptée si (Gauche > 0 OU Droite > 0)
+   ========================================================== */
+let nbReponsesEffectives = 0;
+
+for (let i = 0; i < intensites.length; i++) {
+    const item = intensites[i];
+
+    const g = Number(item?.Gauche) || 0;
+    const d = Number(item?.Droite) || 0;
+
+    if (g > 0 || d > 0) {
+        nbReponsesEffectives++;
+    }
+}
+
+console.log("========================================");
+console.log("NB RÉPONSES EFFECTIVES =", nbReponsesEffectives, "/", intensites.length);
+console.log("========================================");
+
+/* 🔹 Stockage pour usage ultérieur */
+localStorage.setItem("nbReponsesEffectives", String(nbReponsesEffectives));
+
+
+/* ==========================================================
+   CALCUL INTENSITÉ GLOBALE (SOMME DES DEUX INTENSITÉS)
+   ========================================================== */
+const intensiteGlobale = sumG + sumD;
+localStorage.setItem("intensiteGlobale", String(intensiteGlobale));
+
+console.log("========================================");
+console.log("INTENSITÉ GLOBALE =", intensiteGlobale);
+console.log("========================================");
+
+
+/* ==========================================================
    DEBUG BOX VISIBLE SUR LA PAGE
    ========================================================== */
 document.getElementById("debugBox").textContent =
     "DEBUG (temporaire)\n" +
     "raw intensitesQuestions = " + rawIntensitesQuestions + "\n\n" +
     "intensitesQuestions length = " + (Array.isArray(intensites) ? intensites.length : "NON ARRAY") + "\n" +
+    "nbReponsesEffectives = " + nbReponsesEffectives + "\n" +
     "sumG = " + sumG + "\n" +
     "sumD = " + sumD + "\n" +
+    "intensiteGlobale = " + intensiteGlobale + "\n" +
     "stored intensiteGauche = " + localStorage.getItem("intensiteGauche") + "\n" +
     "stored intensiteDroite = " + localStorage.getItem("intensiteDroite");
 
 
 /* ==========================================================
-   CONTRÔLE TEMPORAIRE : TEST INEXPLOITABLE
-   TODO : à déplacer dans la page TEST quand tout sera opérationnel.
-   Si inexploitable : on garde le bouton actif mais on redirige ailleurs.
+   CONTRÔLE : TEST INEXPLOITABLE SI 0 À 5 RÉPONSES (INCLUS)
    ========================================================== */
-if (sumG < 91 && sumD < 91) {
+if (nbReponsesEffectives >= 0 && nbReponsesEffectives <= 5) {
 
     document.getElementById("messageInexploitable").style.display = "block";
 
-    // Redirection vers une page "Test inexploitable"
-    // (tu peux changer le nom du fichier plus tard)
+    // Redirection vers la page "Test inexploitable"
     document.getElementById("btnContinuer").onclick = function() {
         window.location.href = "Interpretations/resultat-Inexploitable.html";
     };
+
+} else {
+
+    /* ==========================================================
+       NOUVEAU CAS : POLARISATION + MOBILISATION FAIBLE
+       Conditions :
+       - nb réponses entre 6 et 9 inclus
+       - écart > 60 
+       - intensité globale < 68
+       ========================================================== */
+
+    const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
+
+    console.log("========================================");
+    console.log("TEST NOUVEAU CAS :");
+    console.log("nbReponsesEffectives =", nbReponsesEffectives);
+    console.log("ecartOrientation =", ecartOrientation);
+    console.log("intensiteGlobale =", intensiteGlobale);
+    console.log("========================================");
+
+    if (
+        nbReponsesEffectives >= 6 && nbReponsesEffectives <= 9  && ecartOrientation > 60 &&
+        intensiteGlobale < 68
+    ) {
+        document.getElementById("btnContinuer").onclick = function() {
+            window.location.href = "Interpretations/Gauche/GdynamiqueEquilibree-IntensiteFaible.html";
+        };
+    }
+
+    // Sinon : on ne touche à rien, le bouton conserve son comportement par défaut.
 }
 
 </script>
