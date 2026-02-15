@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Résultats</title>
+
+<style>
+body {
+    font-family: Montserrat, sans-serif;
+}
+
+.resume {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+}
+
+.resume-line {
+    margin: 6px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #344D59;
+    color: white;
+}
+
+.entete-generale th {
+    background: #e9ecef;
+    color: #333;
+    font-weight: normal;
+    text-align: left;
+}
+
+/* ===== BOUTON CONTINUER ===== */
+.continue-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: #344D59;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.continue-btn:hover {
+    background: #2b3d46;
+}
+
+/* ===== MESSAGE TEST INEXPLOITABLE (TEMPORAIRE) ===== */
+#messageInexploitable {
+    display: none;
+    text-align: center;
+    font-weight: 600;
+    color: #b02a37;
+    margin-bottom: 20px;
+}
+
+/* ===== DEBUG BOX (TEMPORAIRE) ===== */
+#debugBox {
+    display: block;
+    margin: 20px 0;
+    padding: 12px;
+    border: 2px dashed #999;
+    background: #fafafa;
+    font-size: 13px;
+    color: #333;
+    white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Résultats détaillés</h2>
+
+<!-- 🔹 LIGNES AVANT TABLEAU -->
+<div class="resume">
+    <div class="resume-line">
+        Orientation = <strong><span id="orientationGauche">–</span></strong>
+        /
+        Écart = <strong><span id="ecartOrientation">–</span></strong>
+        /
+        Orientation = <strong><span id="orientationDroite">–</span></strong>
+    </div>
+
+    <div class="resume-line">
+        Intensité = <strong><span id="intensiteGauche">–</span></strong>
+        /
+        Intensité = <strong><span id="intensiteDroite">–</span></strong>
+    </div>
+</div>
+
+<!-- 🔹 MESSAGE TEST INEXPLOITABLE (TEMPORAIRE) -->
+<p id="messageInexploitable">
+    Test inexploitable : pas assez de réponses pour interpréter cette dynamique.
+</p>
+
+<!-- 🔹 DEBUG BOX (TEMPORAIRE) -->
+<div id="debugBox">
+DEBUG (temporaire) : en attente de données...
+</div>
+
+<table id="tableResultats">
+    <thead>
+        <tr class="entete-generale">
+            <th colspan="12">
+                Lecture question par question – texte / valeur / intensité
+            </th>
+        </tr>
+
+        <tr>
+            <th>Texte</th>
+            <th>Atouts</th>
+            <th>Freins</th>
+            <th>Valeur</th>
+            <th>Intensité</th>
+            <th>% Orientation</th>
+
+            <th>Texte</th>
+            <th>Atouts</th>
+            <th>Freins</th>
+            <th>Valeur</th>
+            <th>Intensité</th>
+            <th>% Orientation</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableBody">
+        <tr>
+            <td>Consciencieux</td>
+            <td>A</td>
+            <td>Accordez-vous plus de temps pour réfléchir aux conséquences de vos choix.
+            Demandez-vous ce que cela implique concrètement en termes d’énergie, de contraintes, et d’impact sur les autres aspects de votre vie.</td>
+            <td>13</td>
+            <td></td>
+            <td></td>
+
+            <td>Curieux</td>
+            <td></td>
+            <td>La stabilité est une force, mais vous gagneriez à vous ouvrir davantage à de nouvelles perspectives.</td>
+            <td>13</td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Responsable</td><td></td><td></td><td>12</td><td></td><td></td>
+            <td>Autonome</td><td></td><td></td><td>6</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Fiable</td><td></td><td></td><td>9</td><td></td><td></td>
+            <td>Créatif</td><td></td><td></td><td>11</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Intègre</td><td></td><td></td><td>11</td><td></td><td></td>
+            <td>Modéré</td><td></td><td></td><td>1</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Exigeant</td><td></td><td></td><td>10</td><td></td><td></td>
+            <td>Imaginatif</td><td></td><td></td><td>12</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Logique</td><td></td><td></td><td>5</td><td></td><td></td>
+            <td>Intuitif</td><td></td><td></td><td>10</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Ordonné</td><td></td><td></td><td>6</td><td></td><td></td>
+            <td>Synthétique</td><td></td><td></td><td>7</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Organisé</td><td></td><td></td><td>7</td><td></td><td></td>
+            <td>Contemplatif</td><td></td><td></td><td>3</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Prévoyant</td><td></td><td></td><td>3</td><td></td><td></td>
+            <td>Observateur</td><td></td><td></td><td>4</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Persévérant</td><td>Votre persévérance est une ressource forte, mais elle peut vous conduire à maintenir une direction trop longtemps, même lorsqu'elle n'est plus optimale.</td><td></td><td>8</td><td></td><td></td>
+            <td>Analytique</td><td></td><td></td><td>8</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Objectif</td><td></td><td></td><td>4</td><td></td><td></td>
+            <td>Disruptif</td><td>Composez avec l’existant avant de tout réinventer. Reformulez vos idées en propositions concrètes et applicables.</td><td></td><td>9</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Calme</td><td></td><td></td><td>1</td><td></td><td></td>
+            <td>Lucide</td><td></td><td></td><td>5</td><td></td><td></td>
+        </tr>
+        <tr>
+            <td>Précis</td><td></td><td></td><td>2</td><td></td><td></td>
+            <td>Réceptif</td><td></td><td></td><td>2</td><td></td><td></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ===== BOUTON CONTINUER ===== -->
+<div style="text-align:center;">
+    <button id="btnContinuer" class="continue-btn">
+        Continuer
+    </button>
+</div>
+
+<script>
+/* ==========================================================
+   RÉCUPÉRATION ROBUSTE DU PAYS (URL puis localStorage)
+   ========================================================== */
+
+const paramsPays = new URLSearchParams(window.location.search);
+let pays = paramsPays.get("pays");
+
+if (!pays || pays.trim() === "") {
+    pays = localStorage.getItem("paysChoisi") || "";
+}
+
+pays = (pays || "").trim();
+
+// Sécurisation du stockage
+if (pays !== "") {
+    localStorage.setItem("paysChoisi", pays);
+}
+
+
+/* ==========================================================
+   DEBUG COMPLET - RESULTAT.HTML
+   Objectif : comprendre exactement pourquoi intensités = 0 ou NaN
+   ========================================================== */
+
+function safeParseJSON(str) {
+    try {
+        return JSON.parse(str);
+    } catch (e) {
+        return null;
+    }
+}
+
+function debugLog(label, value) {
+    console.log(label, value);
+}
+
+console.log("========================================");
+console.log("DEBUG RESULTAT.HTML - DÉMARRAGE");
+console.log("URL =", window.location.href);
+console.log("PAYS =", pays);
+console.log("========================================");
+
+
+/* 🔹 Lecture brute localStorage */
+const rawIntensitesQuestions = localStorage.getItem("intensitesQuestions");
+const rawOrientationsQuestions = localStorage.getItem("orientationsQuestions");
+
+debugLog("raw intensitesQuestions =", rawIntensitesQuestions);
+debugLog("raw orientationsQuestions =", rawOrientationsQuestions);
+
+debugLog("stored intensiteGauche =", localStorage.getItem("intensiteGauche"));
+debugLog("stored intensiteDroite =", localStorage.getItem("intensiteDroite"));
+debugLog("stored orientationGauche =", localStorage.getItem("orientationGauche"));
+debugLog("stored orientationDroite =", localStorage.getItem("orientationDroite"));
+
+
+/* 🔹 Récupération des valeurs globales affichées */
+document.getElementById("orientationGauche").textContent =
+    localStorage.getItem("orientationGauche") ?? "–";
+
+document.getElementById("ecartOrientation").textContent =
+    localStorage.getItem("ecartOrientation") ?? "–";
+
+document.getElementById("orientationDroite").textContent =
+    localStorage.getItem("orientationDroite") ?? "–";
+
+document.getElementById("intensiteGauche").textContent =
+    localStorage.getItem("intensiteGauche") ?? "–";
+
+document.getElementById("intensiteDroite").textContent =
+    localStorage.getItem("intensiteDroite") ?? "–";
+
+
+/* 🔹 Parsing */
+const intensites = safeParseJSON(rawIntensitesQuestions) || [];
+const orientations = safeParseJSON(rawOrientationsQuestions) || [];
+
+debugLog("intensites parsed =", intensites);
+debugLog("orientations parsed =", orientations);
+
+if (Array.isArray(intensites)) {
+    console.log("intensitesQuestions length =", intensites.length);
+    console.table(intensites);
+} else {
+    console.warn("ATTENTION : intensitesQuestions n'est pas un tableau !");
+}
+
+
+/* 🔹 Injection des intensités question par question */
+const rows = document.querySelectorAll("#tableBody tr");
+
+rows.forEach((row, index) => {
+
+    if (intensites[index]) {
+        row.cells[4].textContent = intensites[index].Gauche;
+        row.cells[10].textContent = intensites[index].Droite;
+    }
+
+    if (orientations[index]) {
+        row.cells[5].textContent = orientations[index].Gauche + " %";
+        row.cells[11].textContent = orientations[index].Droite + " %";
+    }
+});
+
+
+/* 🔹 Sauvegarde du tableau complet dans localStorage */
+const tableHTML = document.getElementById("tableResultats").outerHTML;
+localStorage.setItem("tableResultatsHTML", tableHTML);
+
+
+/* ==========================================================
+   RECALCUL INTENSITÉ À PARTIR DE intensitesQuestions
+   ========================================================== */
+let sumG = 0;
+let sumD = 0;
+
+for (let i = 0; i < intensites.length; i++) {
+    const item = intensites[i];
+
+    const g = Number(item?.Gauche) || 0;
+    const d = Number(item?.Droite) || 0;
+
+    sumG += g;
+    sumD += d;
+
+    console.log("Q" + (i+1) + " -> Gauche:", g, " Droite:", d, " | cumG:", sumG, " cumD:", sumD);
+}
+
+console.log("========================================");
+console.log("TOTAL RECALCULÉ intensités :");
+console.log("sumG =", sumG);
+console.log("sumD =", sumD);
+console.log("========================================");
+
+
+/* 🔹 Mise à jour affichage + stockage */
+localStorage.setItem("intensiteGauche", String(sumG));
+localStorage.setItem("intensiteDroite", String(sumD));
+
+document.getElementById("intensiteGauche").textContent = String(sumG);
+document.getElementById("intensiteDroite").textContent = String(sumD);
+
+
+/* ==========================================================
+   NOUVEAU CRITÈRE : NOMBRE DE RÉPONSES EFFECTIVES
+   Une réponse est comptée si (Gauche > 0 OU Droite > 0)
+   ========================================================== */
+let nbReponsesEffectives = 0;
+
+for (let i = 0; i < intensites.length; i++) {
+    const item = intensites[i];
+
+    const g = Number(item?.Gauche) || 0;
+    const d = Number(item?.Droite) || 0;
+
+    if (g > 0 || d > 0) {
+        nbReponsesEffectives++;
+    }
+}
+
+console.log("========================================");
+console.log("NB RÉPONSES EFFECTIVES =", nbReponsesEffectives, "/", intensites.length);
+console.log("========================================");
+
+/* 🔹 Stockage pour usage ultérieur */
+localStorage.setItem("nbReponsesEffectives", String(nbReponsesEffectives));
+
+
+/* ==========================================================
+   CALCUL INTENSITÉ GLOBALE (SOMME DES DEUX INTENSITÉS)
+   ========================================================== */
+const intensiteGlobale = sumG + sumD;
+localStorage.setItem("intensiteGlobale", String(intensiteGlobale));
+
+console.log("========================================");
+console.log("INTENSITÉ GLOBALE =", intensiteGlobale);
+console.log("========================================");
+
+
+/* ==========================================================
+   DEBUG BOX VISIBLE SUR LA PAGE
+   ========================================================== */
+document.getElementById("debugBox").textContent =
+    "DEBUG (temporaire)\n" +
+    "PAYS = " + pays + "\n\n" +
+    "raw intensitesQuestions = " + rawIntensitesQuestions + "\n\n" +
+    "intensitesQuestions length = " + (Array.isArray(intensites) ? intensites.length : "NON ARRAY") + "\n" +
+    "nbReponsesEffectives = " + nbReponsesEffectives + "\n" +
+    "sumG = " + sumG + "\n" +
+    "sumD = " + sumD + "\n" +
+    "intensiteGlobale = " + intensiteGlobale + "\n" +
+    "stored intensiteGauche = " + localStorage.getItem("intensiteGauche") + "\n" +
+    "stored intensiteDroite = " + localStorage.getItem("intensiteDroite");
+
+
+/* ==========================================================
+   CONTRÔLE : TEST INEXPLOITABLE SI 0 À 5 RÉPONSES (INCLUS)
+   ========================================================== */
+if (nbReponsesEffectives >= 0 && nbReponsesEffectives <= 5) {
+
+    document.getElementById("messageInexploitable").style.display = "block";
+
+    // Redirection vers la page "Test inexploitable"
+    document.getElementById("btnContinuer").onclick = function() {
+        window.location.href = "Interpretations/resultat-Inexploitable.html?pays=" + encodeURIComponent(pays);
+    };
+
+} else {
+
+    /* ==========================================================
+       NOUVEAU CAS : POLARISATION + MOBILISATION FAIBLE
+       ========================================================== */
+
+    const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
+
+    console.log("========================================");
+    console.log("TEST NOUVEAU CAS :");
+    console.log("nbReponsesEffectives =", nbReponsesEffectives);
+    console.log("ecartOrientation =", ecartOrientation);
+    console.log("intensiteGlobale =", intensiteGlobale);
+    console.log("========================================");
+
+    if (
+        nbReponsesEffectives >= 6 && nbReponsesEffectives <= 9 &&
+        ecartOrientation > 60 &&
+        intensiteGlobale < 68
+    ) {
+        document.getElementById("btnContinuer").onclick = function() {
+            window.location.href = "Interpretations/Gauche/GdynamiqueEquilibree-IntensiteFaible.html?pays=" + encodeURIComponent(pays);
+        };
+    } else {
+        // Cas normal
+        document.getElementById("btnContinuer").onclick = function() {
+            window.location.href = "Interpretations/Equilibre-Fort-TresFort.html?pays=" + encodeURIComponent(pays);
+        };
+    }
+}
+
+</script>
+
+</body>
+</html>

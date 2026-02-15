@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Kinesis – Choix du personnage</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- BASE ---------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #ffffff;
+}
+
+/* ---------- BANDEAU ---------- */
+.top-banner {
+    height: 110px;
+    width: 100%;
+    background-image: url("Images/Bandeau.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ---------- CONTENU CENTRAL ---------- */
+main {
+    position: relative;
+    z-index: 2;
+    padding: 20px 120px;
+}
+
+/* ---------- LIGNE COURBE ---------- */
+.characters-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1400px;
+}
+
+/* ---------- BLOCS ---------- */
+.img-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- IMAGES ---------- */
+.img-block img {
+    max-width: 260px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+/* ---------- ZOOM AVANT + PRIORITÉ ---------- */
+.img-block:hover {
+    z-index: 10;
+}
+
+.img-block:hover img {
+    transform: scale(1.8);
+}
+
+/* ---------- CAPTION ---------- */
+.caption {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #344D59;
+    text-align: center;
+}
+
+/* ---------- OFFSETS (COURBE) ---------- */
+.pos-1 { transform: translateY(160px); }
+.pos-2 { transform: translateY(80px); }
+.pos-3 { transform: translateY(-20px); }
+.pos-4 { transform: translateY(-20px); }
+.pos-5 { transform: translateY(80px); }
+.pos-6 { transform: translateY(160px); }
+
+/* ---------- QUESTION ---------- */
+.grid-intro {
+    font-size: 27px;
+    color: #344D59;
+    text-align: center;
+    margin-top: 80px;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-banner"></header>
+
+<main>
+
+    <div class="characters-line">
+
+        <!-- IMAGE GAUCHE CONDITIONNÉE PAR LE PAYS -->
+        <div class="img-block pos-1">
+           <a id="lien-Che" href="#">   
+              <img id="imageGauche" src="Images/Audace-Confrontante.png" alt="">
+           </a>
+        </div>
+
+        <div class="img-block pos-2">
+            <a id="lien-Dame" href="#">
+                <img src="Images/Affectif-Soutenant.png" alt="">
+            </a>
+        </div>
+
+        <div class="img-block pos-3">
+            <a id="lien-Winston" href="#">
+                <img src="Images/Winston.png" alt="">
+            </a>
+        </div>
+
+        <div class="img-block pos-4">
+            <a id="lien-Marie" href="#">
+                <img src="Images/Marie-Curie.png" alt="">
+            </a>
+        </div>
+
+       <div class="img-block pos-5">
+            <img src="Images/Affectif-Appaisant.png" alt="">
+       </div>
+       
+      <div class="img-block pos-6">
+         <a id="lien-audacieux2" href="#">
+                <img src="Images/Audace-Ambitieuse.png" alt="">
+            </a>
+       </div>
+
+    </div>
+
+    <div class="grid-intro">
+        Quel personnage aimeriez-vous rencontrer ?
+    </div>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ==========================================================
+       RÉCUPÉRATION ROBUSTE DU PAYS (URL puis localStorage)
+       ========================================================== */
+
+    const params = new URLSearchParams(window.location.search);
+    let paysChoisi = params.get("pays");
+
+    if (!paysChoisi || paysChoisi.trim() === "") {
+        paysChoisi = localStorage.getItem("paysChoisi") || "";
+    }
+
+    // Normalisation
+    paysChoisi = (paysChoisi || "").trim().toLowerCase();
+
+    // Sécurisation : on restocke proprement
+    localStorage.setItem("paysChoisi", paysChoisi);
+
+
+    /* ==========================================================
+       REDIRECTION AVEC PAYS DANS URL
+       ========================================================== */
+
+    function redirectWithPays(url) {
+        window.location.href = url + "?pays=" + encodeURIComponent(paysChoisi);
+    }
+
+
+    /* ==========================================================
+       NAVIGATION MARIE CURIE (SEULE AUTORISÉE)
+       ========================================================== */
+
+    const MariePage = "Intuition-Structuree/Intuition-Structuree.html";
+
+    const lienMarie = document.getElementById("lien-Marie");
+    if (lienMarie) {
+        lienMarie.addEventListener("click", (e) => {
+            e.preventDefault();
+            redirectWithPays(MariePage);
+        });
+    }
+
+
+    /* ==========================================================
+       AUTRES PERSONNAGES : MESSAGE
+       ========================================================== */
+
+    const autresElementsCliquables = document.querySelectorAll(".img-block a, .img-block img");
+
+    autresElementsCliquables.forEach(el => {
+        if (el.id !== "lien-Marie" && el.closest("#lien-Marie") === null) {
+            el.addEventListener("click", (e) => {
+                e.preventDefault();
+                alert("Ce parcours n’est pas encore disponible. Veuillez sélectionner Marie Curie.");
+            });
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>

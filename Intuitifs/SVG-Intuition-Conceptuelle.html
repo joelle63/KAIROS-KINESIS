@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairos Kinesis – Choix du personnage</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- BASE ---------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #ffffff;
+}
+
+/* ---------- BANDEAU ---------- */
+.top-banner {
+    height: 110px;
+    width: 100%;
+    background-image: url("Images/Bandeau.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ---------- CONTENU CENTRAL ---------- */
+main {
+    position: relative;
+    z-index: 2;
+    padding: 20px 120px;
+}
+
+/* ---------- LIGNE COURBE ---------- */
+.characters-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+/* ---------- BLOCS ---------- */
+.img-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- IMAGES ---------- */
+.img-block img {
+    max-width: 180px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+/* ---------- ZOOM AVANT + PRIORITÉ ---------- */
+.img-block:hover {
+    z-index: 10;
+}
+
+.img-block:hover img {
+    transform: scale(1.8);
+}
+
+/* ---------- CAPTION ---------- */
+.caption {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #344D59;
+    text-align: center;
+}
+
+/* ---------- OFFSETS (COURBE) ---------- */
+.pos-1 { transform: translateY(150px); }
+.pos-2 { transform: translateY(40px); }
+.pos-3 { transform: translateY(-20px); }
+.pos-4 { transform: translateY(-20px); }
+.pos-5 { transform: translateY(40px); }
+.pos-6 { transform: translateY(150px); }
+
+/* ---------- QUESTION ---------- */
+.grid-intro {
+    font-size: 27px;
+    color: #344D59;
+    text-align: center;
+    margin-top: 80px;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-banner"></header>
+
+<main>
+
+    <div class="characters-line">
+
+        <div class="img-block pos-1">
+            <img src="Images/personnage-audacieux1.png" alt="">
+            <div class="caption">Indiana Jones</div>
+        </div>
+
+        <div class="img-block pos-2">
+            <a id="lien-Dame" href="#">
+                <img src="Images/personnage-affectif2.png" alt="">
+            </a>
+            <div class="caption">Viviane – Dame du Lac</div>
+        </div>
+
+        <div class="img-block pos-3">
+        <a id="lien-Andersen" href="#">
+            <img src="Images/Intuition-Federatrice.png" alt="">
+        </a>
+        </div>
+
+        <div class="img-block pos-4">
+            <a id="lien-Marie" href="#">
+                <img src="Images/Marie-Curie.png" alt="">
+            </a>
+        </div>
+
+       <div class="img-block pos-5">
+         <a id="lien-audacieux2">
+                <img src="Images/Audace-Ambitieuse.png" alt="">
+            </a>
+       </div>
+
+          <div class="img-block pos-6">
+            <img src="Images/personnage-affectif1.png" alt="">
+            <div class="caption">Le Petit Prince</div>
+        </div>
+
+    </div>
+
+    <div class="grid-intro">
+        Quel personnage aimeriez-vous rencontrer ?
+    </div>
+
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Page cible pour Marie Curie
+    constMariePage = "Innovation-Structuree/Innovation-Marie.html";
+
+    // Lien Marie : navigation autorisée
+    const lienMarie = document.getElementById("lien-Marie");
+    if (lienMarie) {
+        lienMarie.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = MariePage;
+        });
+    }
+
+    // Tous les autres personnages : erreur
+    const autresLiens = document.querySelectorAll(
+        ".img-block a:not(#lien-Marie), .img-block img:not(#lien-Marie img)"
+    );
+
+    autresLiens.forEach(element => {
+        element.addEventListener("click", (e) => {
+            e.preventDefault();
+            alert("Ce parcours n’est pas encore disponible. Veuillez sélectionner Léonard de Vinci.");
+        });
+    });
+
+});
+</script>
+
+</body>
+</html>

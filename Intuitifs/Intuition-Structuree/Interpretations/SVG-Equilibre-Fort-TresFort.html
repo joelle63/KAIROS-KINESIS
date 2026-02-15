@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos résultats – Rigueur & Intuition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #FEFDF6;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+/* ===== BANDEAU ===== */
+header {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    background-color: #FEFCF8;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #243b44;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== SOUS-TITRE ===== */
+.subtitle {
+    text-align: center;
+    padding: 22px 20px;
+}
+
+.subtitle h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE METRICS + IMAGES ===== */
+.metrics-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 30px 30px;
+    align-items: center;
+}
+
+/* ===== IMAGES ===== */
+.avatar {
+    width: 260px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===== METRICS ===== */
+.metrics {
+    background: #ffffff;
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 30px;
+    border-radius: 6px;
+    border-left: 6px solid #1f1f1f;
+}
+
+.metrics p {
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.metrics strong {
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE TEXTE (MÊME GRILLE) ===== */
+.text-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px 80px;
+}
+
+.main-content {
+    grid-column: 2;
+}
+
+/* ===== BLOCS TEXTE ===== */
+.section {
+    background: #f5f5f2;
+    padding: 1px 20px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+.section h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+.section p {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.section ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+}
+
+.section li {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ===== LIEN VERS EXEMPLES ===== */
+.examples-link {
+    text-align: center;
+    margin: 40px 0 10px;
+}
+
+.btn-examples {
+    display: inline-block;
+    padding: 14px 26px;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.btn-examples:hover {
+    background: #1b2f36;
+}
+
+/* ===== NOUVEAUX BOUTONS ===== */
+.bottom-buttons {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.bottom-buttons button {
+    display: inline-block;
+    padding: 14px 26px;
+    margin: 10px 10px 0;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bottom-buttons button:hover {
+    background: #1b2f36;
+}
+
+/* ===== FOOTER ===== */
+.footer-note {
+    margin-top: 15px;
+    padding-top: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1f1f1f;
+    border-top: 1px solid #d8d8d8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="Images/Bandeau.png" alt="">
+    <div class="banner-title"></div>
+</header>
+
+<section class="subtitle">
+    <h2>Vous incarnez cet archétype de façon équilibrée. Vous semblez vivre cette dynamique assez naturellement et avec une forte intensité.</h2>
+</section>
+
+<!-- ===== METRICS + IMAGES ===== -->
+<section class="metrics-row">
+
+    <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Léonard de Vinci">
+
+    <div class="metrics">
+        <p>
+        <strong>Orientation :</strong>
+        Intuition <span id="pctIntuition">0</span> % /
+        Rigueur <span id="pctRigueur">0</span> %
+        </p>
+
+       <p>
+       <strong>Écart :</strong>
+       <span id="ecartOrientation">0</span> %
+       <span id="libelleEcart"></span>
+       </p>
+
+<p>
+  <strong>Intensité :</strong>
+  Intuition <span id="pointsIntuition">0</span> points /
+  Rigueur <span id="pointsRigueur">0</span> points
+</p>
+
+<p>
+  <strong>Engagement total :</strong>
+  <span id="engagementTotal">0</span> points
+</p>
+
+    </div>
+
+    <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Marie Curie">
+
+</section>
+
+<!-- ===== TEXTE ===== -->
+<section class="text-row">
+<div class="main-content">
+
+    <div class="section">
+        <h3>Votre équilibre actuel</h3>
+        <p>Votre fonctionnement repose sur une intuition créative légèrement dominante, soutenue par une rigueur structurante bien engagée. L’écart modéré entre les deux pôles dessine une dynamique équilibrée mais orientée : la vision, l’anticipation et la compréhension globale ouvrent le mouvement, tandis que l’organisation et la structuration viennent l’accompagner de manière consistante.</p>
+        <p>Cette lecture est renforcée par les niveaux d’intensité observés. Les deux pôles sont fortement mobilisés, avec un engagement global élevé. L’intuition n’est pas seulement présente en pourcentage : elle est activement investie, tout comme la rigueur, qui n’est ni en retrait ni compensatoire. Il ne s’agit donc pas d’un arbitrage entre inspiration et méthode, mais d’une co-présence fonctionnelle des deux dynamiques.</p>
+        <p>Cet équilibre indique une phase où la personne est capable de faire dialoguer vision et mise en forme. Les idées émergent avec clarté, mais elles trouvent rapidement des appuis concrets pour se structurer, se vérifier et s’inscrire dans la durée. La rigueur ne vient pas brider l’intuition ; elle lui sert de point d’ancrage, tandis que l’intuition empêche la rigueur de devenir purement procédurale.
+</p>
+<p>On observe ainsi un fonctionnement orienté vers la cohérence globale : comprendre où l’on va, tout en veillant à comment y aller. Cet archétype ne privilégie ni l’amont ni l’aval des projets, mais cherche à maintenir une continuité entre conception, organisation et déploiement.</p>
+    </div>
+
+    <div class="section">
+        <h3>L’intuition comme moteur principal</h3>
+        <ul>
+            <li>Explorer plusieurs pistes avant de trancher</li>
+            <li>Relier des idées éloignées</li>
+            <li>Se projeter dans des possibles</li>
+            <li>Chercher le sens global avant les détails</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>La rigueur comme structure</h3>
+        <ul>
+            <li>Vérification de la cohérence</li>
+            <li>Mise en forme et structuration</li>
+            <li>Passage de l’idée à l’action</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Lecture croisée</h3>
+        <p><strong>Forces :</strong> créativité structurée, vision suivie d’exécution.</p>
+        <p><strong>Vigilance :</strong> dispersion possible si trop de projets sont lancés simultanément.</p>
+    </div>
+
+<div class="examples-link">
+    <a href="Exemples.html" class="btn-examples">
+        Découvrir des figures ayant pu incarner cette dynamique
+    </a>
+</div>
+
+<!-- ===== NOUVEAUX BOUTONS AJOUTÉS ===== -->
+<div class="bottom-buttons">
+    <button onclick="window.location.href='../../../index.html'">Faire un autre test</button>
+    <button onclick="alert('Page en cours de développement')">Autre</button>
+</div>
+
+    <div class="footer-note">
+        Cette lecture reflète votre dynamique actuelle. Elle n'est en aucun cas figée dans le temps. l'intérêt est de comprendre comment la vivre en s'appyant sur les forces et en minimisant les tensions.
+    </div>
+
+</div>
+</section>
+
+<script>
+  // --- Lecture depuis la page test ---
+  const pctRigueur = parseInt(localStorage.getItem("orientationGauche"), 10) || 0;
+  const pctIntuition = parseInt(localStorage.getItem("orientationDroite"), 10) || 0;
+  const ecartOrientation = parseInt(localStorage.getItem("ecartOrientation"), 10) || 0;
+
+  const libelleEcartEl = document.getElementById("libelleEcart");
+
+  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
+     } else {
+       libelleEcartEl.textContent = " – à définir";
+       }
+
+  const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
+  const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
+
+  // engagement total (simple addition)
+  const engagementTotal = pointsRigueur + pointsIntuition;
+
+  // --- Injection dans le bloc métriques ---
+  document.getElementById("pctIntuition").textContent = pctIntuition;
+  document.getElementById("pctRigueur").textContent = pctRigueur;
+  document.getElementById("ecartOrientation").textContent = ecartOrientation;
+
+  document.getElementById("pointsIntuition").textContent = pointsIntuition;
+  document.getElementById("pointsRigueur").textContent = pointsRigueur;
+  document.getElementById("engagementTotal").textContent = engagementTotal;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #ffffff;
+    color: #344D59;
+}
+
+/* ===== BANDEAU ===== */
+header {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    overflow: hidden;
+}
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== LAYOUT ===== */
+.main-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 260px;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1600px;
+    margin: auto;
+    align-items: start;
+}
+
+.main-layout > div {
+    min-width: 0;
+}
+
+/* ===== COLONNES LATÉRALES ===== */
+.side-block {
+    text-align: center;
+}
+.side-block img {
+    width: 260px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.capacites {
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+/* ===== TEST ===== */
+#progressText {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+.progress-bar {
+    height: 8px;
+    width: 0%;
+    background-color: #344D59;
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+.question-card {
+    display: none;
+}
+.question-card.active {
+    display: block;
+}
+
+.question-title {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.choices {
+    display: flex;
+    gap: 20px;
+}
+.choice {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #344D59;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+.choice.selected {
+    background-color: #344D59;
+    color: #fff;
+}
+.importance-label {
+    display: block;
+    width: 100%;
+    margin: 22px 0 12px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #344D59;
+}
+
+.importance {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+.importance button {
+    padding: 10px 14px;
+    border: none;
+    background: #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.importance button.active {
+    background: #344D59;
+    color: white;
+}
+
+.next-btn {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 30px;
+    background: #344D59;
+    color: white;
+    border-radius: 6px;
+    border: none;
+    font-size: 18px;
+}
+.next-btn:disabled {
+    background: #aaa;
+}
+
+/* ===== PANEL DE SCORES (ON LE GARDE POUR LE JS MAIS ON LE MASQUE) ===== */
+.score-panel {
+    display: none;
+}
+
+/* ===== IMAGES LATÉRALES PLEINE HAUTEUR ===== */
+.side-block {
+    height: calc(100vh - 178px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* on masque les capacités pour l’instant */
+.capacites {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="Images/Bandeau.png" alt="">
+    <div class="banner-title"></div>
+</header>
+
+<div class="main-layout">
+
+    <!-- ===== GAUCHE ===== -->
+    <div class="side-block">
+        <img src="Images/Intuition-Conceptuelle.png" alt="">
+        <div class="capacites">
+            Curiosité<br>
+            Imagination<br>
+            Intuition
+        </div>
+    </div>
+
+    <!-- ===== CENTRE : TEST ===== -->
+    <div>
+
+        <div id="progressText">0% complété</div>
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <p style="text-align:center; font-size:16px; font-weight:600; margin-bottom:70px;">
+            L'objectif de ce test est de mesurer comment, dans votre comportement actuel, la rigueur dialogue avec l'intuition.
+        </p>
+
+        <!-- ===== PANEL DE SCORES CACHÉ (NE PAS SUPPRIMER : UTILISÉ PAR LE JS) ===== -->
+        <div class="score-panel">
+
+            <div class="score-left">
+                Orientation Marie Curie : <span id="orientationGauche">0</span>
+            </div>
+            <div class="score-center">
+                Écart orientation : <span id="ecartOrientation">0</span>
+            </div>
+            <div class="score-right">
+                Orientation Léonard : <span id="orientationDroite">0</span>
+            </div>
+
+            <div class="score-left">
+                Intensité Marie Curie : <span id="intensiteGauche">0</span>
+            </div>
+            <div class="score-center">
+                Écart intensité : <span id="ecartIntensite">0</span>
+            </div>
+            <div class="score-right">
+                Intensité Léonard : <span id="intensiteDroite">0</span>
+            </div>
+
+        </div>
+
+        <!-- QUESTIONS 1 À 13 -->
+
+        <!-- Q1 -->
+        <div id="q1" class="question-card active">
+            <div class="question-title">Face à un nouveau sujet, comment réagissez-vous ? :</div>
+            <div class="choices">
+                <div class="choice" data-value="13">🔸Je raisonne avec méthode et je traite la question avec application et rigueur.</div>
+                <div class="choice" data-value="13">🔹Je suis poussée par mon envie de comprendre et d'élargir mes horizons</div>
+            </div>
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+            <button class="next-btn" id="next1" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div id="q2" class="question-card">
+            <div class="question-title">Quand je suis en groupe :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="12">🔸Je recadre avec fermeté lorsque la cohésion devient incertaine.</div>
+                <div class="choice" data-value="6">🔹Je suis indépendant(e) et je ne recherche pas obligatoirement le consensus.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next2" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div id="q3" class="question-card">
+            <div class="question-title">Lorsque je m'investi dans un sujet :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="9">🔸Je suis constant(e) en actes et en paroles pour rester digne de confiance.</div>
+                <div class="choice" data-value="11">🔹Je laisse libre cours à mon imagination pour explorer des pistes novatrices.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next3" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 4 -->
+        <div id="q4" class="question-card">
+            <div class="question-title">Quand j'exprime mes opinions :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="11">🔸Même si c’est inconfortable, je reste fidèle à mes principes en refusant les compromis.</div>
+                <div class="choice" data-value="1">🔹J'évite les positions extrêmes et je préfère la pondération, quel que soit le contexte..</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next4" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 5 -->
+        <div id="q5" class="question-card">
+            <div class="question-title">Lorsque l'on me fixe un objectif :</div>
+            <div class="choices">
+                <div class="choice" data-value="10">🔸Je respecte rigoureusement les attentes et je vise un haut niveau de qualité</div>
+                <div class="choice" data-value="12">🔹Au-delà du cadre fixé, je vois immédiatement les opportunités que cet objectif pourrait offrir.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next5" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 6 -->
+        <div id="q6" class="question-card">
+            <div class="question-title">Quand je cherche à comprendre :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="5">🔸J’analyse méthodiquement la situation.</div>
+                <div class="choice" data-value="10">🔹Mes ressentis m’aident plus que la logique.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next6" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 7 -->
+        <div id="q7" class="question-card">
+            <div class="question-title">Si l'on me demande mon avis :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="6">🔸Je hiérarchise mes idées et je présente mon avis de manière claire et structurée.</div>
+                <div class="choice" data-value="7">🔹Je présente les choses en dégageant l’essentiel avec cohérence.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next7" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 8 -->
+        <div id="q8" class="question-card">
+            <div class="question-title">Face à une journée chargée :</div>
+
+            <div class="choices">
+                <div class="choice" data-value="7">🔸Je planifie en détail et je priorise mes tâches pour optimiser mon temps.</div>
+                <div class="choice" data-value="3">🔹Je prends du recul pour avoir une vision globale avant de décider comment avancer.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next8" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 9 -->
+        <div id="q9" class="question-card">
+            <div class="question-title">Face à l'incertitude :</div>
+            <div class="choices">
+                <div class="choice" data-value="3">🔸J’anticipe les difficultés potentielles et je prends toutes les mesures nécessaires pour les éviter.</div>
+                <div class="choice" data-value="4">🔹J’observe ce qui se présente sans chercher à tout prévoir et je m’adapte quand les difficultés apparaissent.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next9" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 10 -->
+        <div id="q10" class="question-card">
+            <div class="question-title">Lorsque je dois résoudre un problème :</div>
+            <div class="choices">
+                <div class="choice" data-value="8">🔸Je m’y engage avec constance et détermination jusqu’à trouver une solution.</div>
+                <div class="choice" data-value="8">🔹Je cherche avant tout à comprendre la cohérence globale du sujet avant d’agir.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next10" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 11 -->
+        <div id="q11" class="question-card">
+            <div class="question-title">Quand j’entreprends quelque chose :</div>
+            <div class="choices">
+                <div class="choice" data-value="4">🔸Je m’appuie sur des éléments factuels et concrets pour avancer.</div>
+                <div class="choice" data-value="9">🔹J’explore des façons de faire qui sortent du cadre..</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next11" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 12 -->
+        <div id="q12" class="question-card">
+            <div class="question-title">Lorsque je perçois un désaccord :</div>
+            <div class="choices">
+                <div class="choice" data-value="1">🔸Je garde mon sang-froid pour apaiser la situation.</div>
+                <div class="choice" data-value="5">🔹Je cherche à comprendre clairement ce qui se joue.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next12" disabled>Question suivante</button>
+        </div>
+
+        <!-- QUESTION 13 -->
+        <div id="q13" class="question-card">
+            <div class="question-title">Quand on me transmet une information :</div>
+            <div class="choices">
+                <div class="choice" data-value="2">🔸Je m’attends à ce qu’elle soit exacte et factuelle.</div>
+                <div class="choice" data-value="2">🔹Je l’accueille avec curiosité pour voir ce qu’elle peut m’apporter.</div>
+            </div>
+
+            <div class="importance-label">Complétez votre réponse :</div>
+            <div class="importance">
+                <button data-level="3">Ce choix me correspond TOTALEMENT</button>
+                <button data-level="2">Ce choix me représente BIEN mais j'ai UN PEU de l'autre aussi.</button>
+                <button data-level="1">Un PEU des DEUX.</button>
+                <button data-level="0">Ni l'un ni l'autre.</button>
+            </div>
+
+            <button class="next-btn" id="next13" disabled>Voir le résultat</button>
+        </div>
+
+    </div>
+
+    <!-- ===== DROITE ===== -->
+    <div class="side-block">
+        <img src="Images/Rigueur-Methodique.png" alt="">
+        <div class="capacites">
+            Intégrité<br>
+            Exigence<br>
+            Fiabilité
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+/* ==========================================================
+   RÉCUPÉRATION DU PAYS (URL puis localStorage)
+   ========================================================== */
+
+const paramsPays = new URLSearchParams(window.location.search);
+let paysChoisi = paramsPays.get("pays");
+
+if (!paysChoisi || paysChoisi.trim() === "") {
+    paysChoisi = localStorage.getItem("paysChoisi") || "";
+}
+
+paysChoisi = (paysChoisi || "").trim();
+
+// On sécurise le stockage
+if (paysChoisi !== "") {
+    localStorage.setItem("paysChoisi", paysChoisi);
+}
+
+
+/* ==========================================================
+   RESET TOTAL AU CHARGEMENT DU TEST
+   (évite que les résultats précédents polluent le nouveau)
+   ========================================================== */
+
+localStorage.removeItem("tableResultatsHTML");
+localStorage.removeItem("intensitesQuestions");
+localStorage.removeItem("orientationsQuestions");
+localStorage.removeItem("nbReponsesEffectives");
+localStorage.removeItem("intensiteGlobale");
+
+localStorage.setItem("orientationGauche", "0");
+localStorage.setItem("orientationDroite", "0");
+localStorage.setItem("ecartOrientation", "0");
+
+localStorage.setItem("intensiteGauche", "0");
+localStorage.setItem("intensiteDroite", "0");
+localStorage.setItem("ecartIntensite", "0");
+
+
+let scoreDroite = 0;
+let scoreGauche = 0;
+let intensitesQuestions = [];
+let orientationsQuestions = [];
+
+let questionActuelle = 1;
+const totalQuestions = 13;
+
+
+/* ==========================================================
+   REDIRECTION FINALE (AVEC TRANSMISSION DU PAYS)
+   ========================================================== */
+function redirectToFinalPage() {
+    const pays = localStorage.getItem("paysChoisi") || "";
+    window.location.href = "Resultat.html?pays=" + encodeURIComponent(pays);
+}
+
+
+function setupQuestion(qId, nextBtnId, nextQuestionId, progressPercent) {
+    const q = document.getElementById(qId);
+    const nextBtn = document.getElementById(nextBtnId);
+
+    let choix = null;
+    let importance = null;
+    let choixIndex = null;
+
+    function canGoNext() {
+        return (
+            importance === 0 ||
+            importance === 1 ||
+            (importance !== null && choix !== null)
+        );
+    }
+
+    function updateNextButton() {
+        nextBtn.disabled = !canGoNext();
+    }
+
+    q.querySelectorAll(".choice").forEach((c, index) => {
+        c.addEventListener("click", () => {
+            q.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+            c.classList.add("selected");
+            choix = parseInt(c.dataset.value, 10);
+            choixIndex = index;
+            updateNextButton();
+        });
+    });
+
+    q.querySelectorAll(".importance button").forEach(b => {
+        b.addEventListener("click", () => {
+            q.querySelectorAll(".importance button").forEach(x => x.classList.remove("active"));
+            b.classList.add("active");
+            importance = parseInt(b.dataset.level, 10);
+            updateNextButton();
+        });
+    });
+
+    nextBtn.addEventListener("click", () => {
+
+        const choixElements = q.querySelectorAll(".choice");
+        const valeurGauche = parseInt(choixElements[0].dataset.value, 10);
+        const valeurDroite = parseInt(choixElements[1].dataset.value, 10);
+
+        // --- Calcul score global ---
+        if (importance === 0) {
+            // rien
+        }
+        else if (importance === 1) {
+            scoreGauche += valeurGauche * importance;
+            scoreDroite += valeurDroite * importance;
+        }
+        else if (importance !== null && choix !== null) {
+            const score = choix * importance;
+            if (choixIndex === 0) {
+                scoreGauche += score;
+            } else {
+                scoreDroite += score;
+            }
+        }
+
+        // --- Progression ---
+        const pctProgress = Math.round((questionActuelle / totalQuestions) * 100);
+        document.getElementById("progressText").textContent = pctProgress + "% complété";
+        document.getElementById("progressBar").style.width = progressPercent;
+
+        // --- Intensités globales ---
+        const intensiteGauche = scoreGauche;
+        const intensiteDroite = scoreDroite;
+        const ecartIntensite = Math.abs(intensiteDroite - intensiteGauche);
+
+        const total = intensiteGauche + intensiteDroite;
+        let oG = 0, oD = 0, eO = 0;
+
+        if (total > 0) {
+            oG = Math.round((intensiteGauche / total) * 100);
+            oD = Math.round((intensiteDroite / total) * 100);
+            eO = Math.abs(oG - oD);
+        }
+
+        let oQuestionG = 0;
+        let oQuestionD = 0;
+
+        if (importance === 0) {
+            oQuestionG = 0;
+            oQuestionD = 0;
+        }
+        else if (importance === 1) {
+            oQuestionG = 50;
+            oQuestionD = 50;
+        }
+        else if (importance !== null && choix !== null) {
+            if (choixIndex === 0) {
+                oQuestionG = 100;
+                oQuestionD = 0;
+            } else {
+                oQuestionG = 0;
+                oQuestionD = 100;
+            }
+        }
+
+        orientationsQuestions.push({
+            Gauche: oQuestionG,
+            Droite: oQuestionD
+        });
+
+        document.getElementById("orientationGauche").textContent = oG + " %";
+        document.getElementById("orientationDroite").textContent = oD + " %";
+        document.getElementById("ecartOrientation").textContent = eO + " %";
+
+        localStorage.setItem("orientationGauche", oG);
+        localStorage.setItem("orientationDroite", oD);
+        localStorage.setItem("ecartOrientation", eO);
+
+        document.getElementById("intensiteGauche").textContent = intensiteGauche;
+        document.getElementById("intensiteDroite").textContent = intensiteDroite;
+
+        localStorage.setItem("intensiteGauche", intensiteGauche);
+        localStorage.setItem("intensiteDroite", intensiteDroite);
+
+        document.getElementById("ecartIntensite").textContent = ecartIntensite;
+        localStorage.setItem("ecartIntensite", ecartIntensite);
+
+
+        // --- Intensité question par question ---
+        let intensiteQuestionGauche = 0;
+        let intensiteQuestionDroite = 0;
+
+        if (importance === 0) {
+            // rien
+        }
+        else if (importance === 1) {
+            intensiteQuestionGauche = valeurGauche * importance;
+            intensiteQuestionDroite = valeurDroite * importance;
+        }
+        else if (importance !== null && choix !== null) {
+            const valeur = choix * importance;
+            if (choixIndex === 0) {
+                intensiteQuestionGauche = valeur;
+            } else {
+                intensiteQuestionDroite = valeur;
+            }
+        }
+
+        intensitesQuestions.push({
+            Gauche: intensiteQuestionGauche,
+            Droite: intensiteQuestionDroite
+        });
+
+
+        // --- Navigation ---
+        q.classList.remove("active");
+        q.style.display = "none";
+
+        if (nextQuestionId) {
+            questionActuelle++;
+            const nextQ = document.getElementById(nextQuestionId);
+            nextQ.style.display = "block";
+            nextQ.classList.add("active");
+        }
+        else {
+            // SAUVEGARDE SYSTÉMATIQUE AVANT REDIRECTION
+            localStorage.setItem("intensitesQuestions", JSON.stringify(intensitesQuestions));
+            localStorage.setItem("orientationsQuestions", JSON.stringify(orientationsQuestions));
+
+            redirectToFinalPage();
+        }
+    });
+}
+
+setupQuestion("q1", "next1", "q2", "8%");
+setupQuestion("q2", "next2", "q3", "15%");
+setupQuestion("q3", "next3", "q4", "23%");
+setupQuestion("q4", "next4", "q5", "31%");
+setupQuestion("q5", "next5", "q6", "38%");
+setupQuestion("q6", "next6", "q7", "46%");
+setupQuestion("q7", "next7", "q8", "54%");
+setupQuestion("q8", "next8", "q9", "62%");
+setupQuestion("q9", "next9", "q10", "69%");
+setupQuestion("q10", "next10", "q11", "77%");
+setupQuestion("q11", "next11", "q12", "85%");
+setupQuestion("q12", "next12", "q13", "92%");
+setupQuestion("q13", "next13", null, "100%");
+</script>
+
+</body>
+</html>
