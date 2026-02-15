@@ -408,8 +408,8 @@ if (nbReponsesEffectives >= 0 && nbReponsesEffectives <= 5) {
        NOUVEAU CAS : POLARISATION + MOBILISATION FAIBLE
        Conditions :
        - nb réponses entre 6 et 9 inclus
-       - écart > 60 
-       - intensité globale < 68
+       - écart > 60 (&&        ecartOrientation > 60)
+       - intensité globale < 60
        ========================================================== */
 
     const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
