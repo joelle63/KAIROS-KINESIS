@@ -1,0 +1,282 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Figures incarnées – Curiosité méthodique</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #FEFDF6;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+/* ===== BANDEAU ===== */
+header {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    background-color: #FEFCF8;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #243b44;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== SOUS-TITRE ===== */
+.subtitle {
+    text-align: center;
+    padding: 22px 20px 40px;
+}
+
+.subtitle h2 {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+/* ===== GRILLE 2 COLONNES ===== */
+.profiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px 80px;
+}
+
+/* ===== PROFIL ===== */
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 18px;
+}
+
+.profile h3 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #243b44;
+    margin: 0 0 10px 0;
+}
+
+.profile .intro {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+/* ===== BLOCS TEXTE ===== */
+.section {
+    background: #f5f5f2;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+.section h4 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+.section ul {
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.section li {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.profile img {
+    object-position: center top;
+}
+
+.profile img.Jane {
+    object-position: center 60%;
+}
+
+/* ===== BOUTONS BAS DE PAGE ===== */
+.bottom-buttons {
+    text-align: center;
+    padding: 0 20px 60px;
+}
+
+.bottom-buttons button {
+    padding: 12px 26px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #243b44;
+    color: white;
+}
+
+.bottom-buttons button:hover {
+    background: #1c2f36;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .profiles {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="Images/Bandeau.png" alt="">
+    <div class="banner-title"></div>
+</header>
+
+<section class="subtitle">
+    <h2>A certains moments de leur vie ils ont, probablement, incarné cette dynamique.</h2>
+</section>
+
+<section class="profiles">
+
+    <!-- STEVE JOBS -->
+    <div class="profile">
+        <img src="Images/steve.png" alt="Steve Jobs">
+
+        <h3>Steve Jobs</h3>
+        <p class="intro">
+            Cofondateur d’Apple et figure majeure de l’innovation technologique.
+            Il incarne une curiosité guidée par l’intuition, orientée vers la compréhension des usages,
+            et tenue par une exigence forte de cohérence et de réalisation.
+        </p>
+
+        <div class="section">
+            <h4>Intuition dominante</h4>
+            <ul>
+                <li>Perception précoce des usages avant leur formalisation</li>
+                <li>Vision globale des systèmes et des expériences</li>
+                <li>Capacité à relier technologie, design et sens</li>
+                <li>Décisions guidées par le « juste » plutôt que par la moyenne</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Rigueur significative</h4>
+            <ul>
+                <li>Exigence élevée sur la qualité et les détails</li>
+                <li>Structuration claire des processus de création</li>
+                <li>Capacité à poser des contraintes fécondes</li>
+                <li>Passage systématique de la vision à la forme concrète</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Équilibre dynamique</h4>
+            <ul>
+                <li>L’intuition ouvre les possibles</li>
+                <li>La rigueur permet leur incarnation</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Intensité totale</h4>
+            <ul>
+                <li>Engagement personnel élevé et durable</li>
+                <li>Focalisation continue sur l’essentiel</li>
+                <li>Capacité à transformer une vision en réalité tangible</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- JANE GOODALL -->
+    <div class="profile">
+        <img src="Images/jane.jpg" alt="Jane Goodall" class="Jane">
+
+        <h3>Jane Goodall</h3>
+        <p class="intro">
+            Primatologue et éthologue, pionnière de l’observation du comportement animal.
+            Elle incarne une curiosité patiente et incarnée, guidée par une intuition fine
+            et structurée par une rigueur scientifique sur le temps long.
+        </p>
+
+        <div class="section">
+            <h4>Intuition dominante</h4>
+            <ul>
+                <li>Sensibilité aiguë aux comportements et aux relations</li>
+                <li>Attention portée aux micro-variations du vivant</li>
+                <li>Capacité à percevoir avant de conceptualiser</li>
+                <li>Ouverture constante à l’inattendu</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Rigueur significative</h4>
+            <ul>
+                <li>Observation méthodique et répétée</li>
+                <li>Prise de notes structurée et précise</li>
+                <li>Respect strict des cadres scientifiques</li>
+                <li>Validation progressive des hypothèses</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Équilibre dynamique</h4>
+            <ul>
+                <li>L’intuition oriente l’attention</li>
+                <li>La rigueur garantit la fiabilité</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h4>Intensité totale</h4>
+            <ul>
+                <li>Engagement de plusieurs décennies sur le terrain</li>
+                <li>Continuité et constance de la démarche</li>
+                <li>Transmission active des connaissances</li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== BOUTONS ===== -->
+<div class="bottom-buttons">
+    <button onclick="window.location.href='../../../index.html';">Refaire un nouveau test</button>
+    <button onclick="alert('Page en cours de développement');">Autre</button>
+</div>
+
+</body>
+</html>
