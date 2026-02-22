@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos résultats – Rigueur & Intuition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #FEFDF6;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+/* ===== BANDEAU ===== */
+header {
+    position: relative;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+    background-color: #FEFCF8;
+}
+
+header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #243b44;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== SOUS-TITRE ===== */
+.subtitle {
+    text-align: center;
+    padding: 22px 20px;
+}
+
+.subtitle h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE METRICS + IMAGES ===== */
+.metrics-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 30px 30px;
+    align-items: center;
+}
+
+/* ===== IMAGES ===== */
+.avatar {
+    width: 260px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===== METRICS ===== */
+.metrics {
+    background: #ffffff;
+    max-width: 540px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 30px;
+    border-radius: 6px;
+    border-left: 6px solid #1f1f1f;
+}
+
+.metrics p {
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.metrics strong {
+    font-weight: 700;
+    color: #243b44;
+}
+
+/* ===== LIGNE TEXTE (MÊME GRILLE) ===== */
+.text-row {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px 80px;
+}
+
+.main-content {
+    grid-column: 2;
+}
+
+/* ===== BLOCS TEXTE ===== */
+.section {
+    background: #f5f5f2;
+    padding: 1px 20px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+.section h3 {
+    margin: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #243b44;
+}
+
+.section p {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.section ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+}
+
+.section li {
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ===== LIEN VERS EXEMPLES ===== */
+.examples-link {
+    text-align: center;
+    margin: 40px 0 10px;
+}
+
+.btn-examples {
+    display: inline-block;
+    padding: 14px 26px;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.btn-examples:hover {
+    background: #1b2f36;
+}
+
+/* ===== NOUVEAUX BOUTONS ===== */
+.bottom-buttons {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.bottom-buttons button {
+    display: inline-block;
+    padding: 14px 26px;
+    margin: 10px 10px 0;
+    background: #243b44;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bottom-buttons button:hover {
+    background: #1b2f36;
+}
+
+/* ===== FOOTER ===== */
+.footer-note {
+    margin-top: 15px;
+    padding-top: 18px;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #1f1f1f;
+    border-top: 1px solid #d8d8d8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="Images/Bandeau.png" alt="">
+    <div class="banner-title"></div>
+</header>
+
+<section class="subtitle">
+    <h2>Vos résultats révèlent une dynamique fortement orientée vers la rigueur.</h2>
+</section>
+
+<!-- ===== METRICS + IMAGES ===== -->
+<section class="metrics-row">
+
+     <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Marie Curie">
+
+    <div class="metrics">
+        <p>
+        <strong>Orientation :</strong>
+        Intuition <span id="pctIntuition">0</span> % /
+        Rigueur <span id="pctRigueur">0</span> %
+        </p>
+
+       <p>
+       <strong>Écart :</strong>
+       <span id="ecartOrientation">0</span> %
+       <span id="libelleEcart"></span>
+       </p>
+
+<p>
+  <strong>Intensité :</strong>
+  Intuition <span id="pointsIntuition">0</span> points /
+  Rigueur <span id="pointsRigueur">0</span> points
+</p>
+
+<p>
+  <strong>Engagement total :</strong>
+  <span id="engagementTotal">0</span> points
+</p>
+
+    </div>
+
+   <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Léonard de Vinci">
+
+
+</section>
+
+<!-- ===== TEXTE ===== -->
+<section class="text-row">
+<div class="main-content">
+
+    <div class="section">
+        <h3>Votre équilibre actuel</h3>
+        <p>Votre fonctionnement repose actuellement sur une rigueur totalement dominante, sans mobilisation observable du pôle intuitif. L’écart maximal entre les deux dynamiques dessine une polarisation nette : la stabilité, la méthode et le cadre constituent ici l’unique point d’appui dans la manière d’agir et de se positionner. Dans ce type de configuration, la rigueur ne joue plus un rôle de soutien ; elle devient le mode de fonctionnement principal, sans activation de la vision globale ni de l’exploration.</p>
+        <p>Cette lecture est toutefois à nuancer par les niveaux d’intensité relevés. L’énergie globale engagée reste modérée : la rigueur est présente mais peu expansive, et l’intuition apparaît totalement inactive dans les réponses. Cela suggère un fonctionnement davantage orienté vers le maintien du cadre que vers l’initiative ou l’expansion.</p>
+        <p>Le contraste avec les choix symboliques mérite attention. Le choix de la Suisse confirme l’attrait pour la fiabilité et la structure, tandis que la présence de Léonard de Vinci suggère qu’un registre intuitif et créatif demeure symboliquement investi, bien qu’il ne soit pas mobilisé dans le fonctionnement actuel.</p>
+        <p>On observe ainsi une posture de sécurité et de cadrage, dans laquelle l’action se concentre sur ce qui est maîtrisable et contrôlable. Cette configuration peut correspondre à une phase de stabilisation, où la priorité consiste à contenir et sécuriser avant d’élargir progressivement le registre disponible.</p>
+    </div>
+
+    <div class="section">
+        <h3>Une dynamique univoque</h3>
+        <p>Dans la configuration actuelle, la rigueur constitue l’unique point d’appui dans la prise de décision et l’organisation de l’action. Les repères concrets, la vérification et la stabilité structurent l’ensemble du fonctionnement.</p>
+        <p>En revanche, le registre intuitif ne participe pas à ce processus. La projection vers des scénarios alternatifs, la mise en perspective globale ou l’association d’idées ne semblent pas mobilisées.</p>
+        <p>Cette organisation crée une cohérence interne, mais elle repose sur une seule énergie. Lorsque le dialogue entre rigueur et intuition ne s’installe pas, l’ajustement aux situations complexes peut devenir plus limité.</p>
+    </div>
+
+    <!-- ==========================================================
+         SECTION PERSONNALISÉE
+         ========================================================== -->
+    <div class="section">
+    <h3>Installer progressivement un dialogue plus équilibré</h3>
+
+    <p>
+        Votre dynamique actuelle montre une prédominance nette de la rigueur. L’enjeu n’est pas de remettre en cause vos appuis structurants, mais d’examiner comment certains peuvent être assouplis tandis que d’autres mériteraient d’être davantage sollicités, afin d’installer un dialogue plus fluide entre vos différentes dynamiques.
+    </p>
+
+    <h4>Appuis fortement mobilisés :</h4>
+    <ul>
+        <li id="surinvesti">–</li>
+    </ul>
+
+    <h4>Axes d’ajustement :</h4>
+    <ul>
+        <li id="sousInvesti">–</li>
+    </ul>
+ 
+<p> </p>
+    
+    <p>
+        Ces propositions ne visent pas à modifier votre nature, 
+        mais à favoriser l'équilibre entre exigence méthodologique et curiosité créative.
+        C’est dans cette alternance consciente que le dialogue archétypal 
+        peut s’installer durablement.
+    </p>
+</div>
+
+    <!-- ==========================================================
+         ZONES DE VIGILANCE
+         ========================================================== -->
+    <div class="section">
+        <h3>Les zones de vigilance de cette dynamique</h3>
+        <p>Cette dynamique fonctionne pleinement lorsqu’elle peut s’appuyer sur un cadre clair, des règles explicites et des repères stables. Elle devient plus fragile dans certains contextes que vous avez peut-être déjà rencontrés :</p>
+        <ul>
+          <li>Lorsque l’environnement exige de décider rapidement sans disposer de données suffisantes ou de garanties concrètes.</li>
+          <li>Dans des situations mouvantes, ambiguës ou imprévisibles, où les règles évoluent fréquemment.</li>
+          <li>Face à des demandes de vision globale ou créative, alors que l’attention reste centrée sur la sécurisation des détails.</li>
+          <li>Si le besoin de contrôle ralentit l’action ou empêche l’expérimentation progressive.</li>
+          <li>Lorsque la prudence se transforme en évitement, différant indéfiniment une décision par crainte de l’erreur.</li>
+          <li>Si le cadre devient trop rigide pour intégrer des éléments nouveaux ou inattendus.</li>
+          <li>Lorsque la recherche de stabilité limite l’adaptation et l’évolution nécessaires.</li>
+       </ul>
+    </div>
+
+    <!-- ==========================================================
+         PLEIN POTENTIEL
+         ========================================================== -->
+    <div class="section">
+        <h3>Quand l’archétype s’exprime dans un équilibre ajusté, il permet</h3>
+        <ul>
+           <li>D’associer précision analytique et vision globale dans la prise de décision.</li>
+           <li>De sécuriser les projets tout en restant ouvert aux ajustements nécessaires.</li>
+           <li>De transformer une intuition en action structurée et réaliste.</li>
+           <li>De maintenir un cap fiable sans perdre la capacité d’adaptation.</li>
+        </ul>
+        <p></p>
+        <h3>Cet équilibre offre une action à la fois fiable et créative.</h3>
+    </div>
+
+<div class="examples-link">
+<!--    <a href="Exemples.html" class="btn-examples">
+        Découvrir des figures ayant pu incarner cette dynamique
+    </a>
+</div>-->
+
+<!-- ===== NOUVEAUX BOUTONS AJOUTÉS ===== -->
+<div class="bottom-buttons">
+    <button onclick="window.location.href='../../../../index.html'">Faire un autre test</button>
+    <button onclick="alert('Page en cours de développement')">Autre</button>
+    <button onclick="alert('Page en cours de développement')">Découvrir des figures ayant pu incarner cette dynamique</button>
+
+</div>
+
+    <div class="footer-note">
+        Cette lecture reflète votre dynamique actuelle. Elle n'est en aucun cas figée dans le temps. l'intérêt est de comprendre comment la vivre en s'appyant sur les forces et en minimisant les tensions.
+    </div>
+
+</div>
+</section>
+
+<script>
+  // --- Lecture depuis la page test ---
+  const pctRigueur = parseInt(localStorage.getItem("orientationGauche"), 10) || 0;
+  const pctIntuition = parseInt(localStorage.getItem("orientationDroite"), 10) || 0;
+  const ecartOrientation = parseInt(localStorage.getItem("ecartOrientation"), 10) || 0;
+
+  const libelleEcartEl = document.getElementById("libelleEcart");
+
+  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
+  } else {
+     libelleEcartEl.textContent = " – Dynamique polarisée";
+  }
+
+  const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
+  const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
+
+  const engagementTotal = pointsRigueur + pointsIntuition;
+
+  document.getElementById("pctIntuition").textContent = pctIntuition;
+  document.getElementById("pctRigueur").textContent = pctRigueur;
+  document.getElementById("ecartOrientation").textContent = ecartOrientation;
+
+  document.getElementById("pointsIntuition").textContent = pointsIntuition;
+  document.getElementById("pointsRigueur").textContent = pointsRigueur;
+  document.getElementById("engagementTotal").textContent = engagementTotal;
+
+
+  /* ==========================================================
+     RÉCUPÉRATION DU TABLEAU COMPLET DEPUIS LA PAGE RÉSULTATS
+     ========================================================== */
+
+  const tableHTML = localStorage.getItem("tableResultatsHTML") || "";
+
+  let tableDoc = null;
+  let tableElement = null;
+  let tableRows = [];
+
+  if (tableHTML.trim() !== "") {
+      const parser = new DOMParser();
+      tableDoc = parser.parseFromString(tableHTML, "text/html");
+      tableElement = tableDoc.querySelector("table");
+
+      if (tableElement) {
+          tableRows = tableElement.querySelectorAll("tbody tr");
+      }
+  }
+
+
+  /* ==========================================================
+     HELPERS
+     ========================================================== */
+
+  const getText = (cell) => (cell && cell.textContent ? cell.textContent.trim() : "");
+  const toInt = (txt, fallback = 0) => {
+      const s = (txt ?? "").toString().trim();
+      if (s === "") return fallback;
+      const n = parseInt(s, 10);
+      return Number.isFinite(n) ? n : fallback;
+  };
+
+
+/* ==========================================================
+   EXTRACTION DES 4 PLUS FORTES INTENSITÉS GAUCHE
+========================================================== */
+
+let atouts = [];
+
+tableRows.forEach(row => {
+    const cells = row.cells;
+    if (!cells || cells.length < 12) return;
+
+    const libelle = getText(cells[0]);
+    const phrase = getText(cells[1]);
+    const intensite = toInt(getText(cells[4]), 0);
+
+    if (libelle && intensite > 0) {
+        atouts.push({
+            libelle: libelle,
+            phrase: phrase,
+            intensite: intensite
+        });
+    }
+});
+
+/* Tri décroissant */
+atouts.sort((a, b) => b.intensite - a.intensite);
+
+/* On garde les 4 premiers */
+const topAtouts = atouts.slice(0, 4);
+/* ==========================================================
+   EXTRACTION DES 4 PLUS FORTES INTENSITÉS DROITE
+========================================================== */
+
+/* ==========================================================
+   EXTRACTION DES 4 PLUS FORTES INTENSITÉS DROITE
+   (Si toutes = 0 → on bascule sur la valeur référentielle)
+========================================================== */
+
+let freins = [];
+let totalIntensiteDroite = 0;
+
+tableRows.forEach(row => {
+    const cells = row.cells;
+    if (!cells || cells.length < 12) return;
+
+    const libelle = getText(cells[6]);
+    const phrase = getText(cells[8]);
+    const valeur = toInt(getText(cells[9]), 0);
+    const intensite = toInt(getText(cells[10]), 0);
+
+    if (!libelle) return;
+
+    totalIntensiteDroite += intensite;
+
+    freins.push({
+        libelle: libelle,
+        phrase: phrase,
+        intensite: intensite,
+        valeur: valeur
+    });
+});
+
+
+/* ==========================================================
+   SI AU MOINS UNE INTENSITÉ > 0 → TRI PAR INTENSITÉ
+   SINON → TRI PAR VALEUR RÉFÉRENTIELLE
+========================================================== */
+
+if (totalIntensiteDroite > 0) {
+    freins = freins.filter(item => item.intensite > 0);
+    freins.sort((a, b) => b.intensite - a.intensite);
+} else {
+    freins.sort((a, b) => b.valeur - a.valeur);
+}
+
+/* On garde les 4 premiers */
+const topFreins = freins.slice(0, 4);
+/* ==========================================================
+   INJECTION DANS LES LISTES
+========================================================== */
+
+const ulSurinvesti = document.getElementById("surinvesti").parentElement;
+const ulSousInvesti = document.getElementById("sousInvesti").parentElement;
+
+/* On vide les listes */
+ulSurinvesti.innerHTML = "";
+ulSousInvesti.innerHTML = "";
+
+/* Injection des 4 atouts */
+topAtouts.forEach(item => {
+    const li = document.createElement("li");
+    li.innerHTML = "<strong>" + item.libelle + "</strong> — " + item.phrase;
+    ulSurinvesti.appendChild(li);
+});
+
+/* Injection des 4 freins */
+topFreins.forEach(item => {
+    const li = document.createElement("li");
+    li.innerHTML = "<strong>" + item.libelle + "</strong> — " + item.phrase;
+    ulSousInvesti.appendChild(li);
+});
+</script>
+
+</body>
+</html>
