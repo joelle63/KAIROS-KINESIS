@@ -170,11 +170,11 @@ DEBUG (temporaire) : en attente de données...
             <td>Modéré</td><td></td><td></td><td>1</td><td></td><td></td>
         </tr>
         <tr>
-            <td>Exigeant</td><td></td><td></td><td>10</td><td></td><td></td>
+            <td>L'éxigence</td><td>Elle élève vos standards et renforce votre sens des responsabilités. Elle peut cependant restreindre la souplesse nécessaire face aux imprévus.</td><td></td><td>10</td><td></td><td></td>
             <td>L'imagination</td><td>D</td><td>Peu présente dans votre manière d’aborder les situations, elle offrirait la possibilité d’envisager des scénarios alternatifs.</td><td>12</td><td></td><td></td>
         </tr>
         <tr>
-            <td>Logique</td><td></td><td></td><td>5</td><td></td><td></td>
+            <td>La logique</td><td>Elle vous permet d’analyser les situations avec rigueur et cohérence. Trop dominante, elle peut toutefois restreindre l’exploration d’approches moins linéaires ou plus intuitives.</td><td></td><td>5</td><td></td><td></td>
             <td>L'intuition</td><td>F</td><td>Votre analyse guide fortement vos décisions. Lui accorder une écoute plus attentive introduirait davantage de spontanéité dans vos actions.</td><td>10</td><td></td><td></td>
         </tr>
         <tr>
@@ -397,42 +397,29 @@ if (nbReponsesEffectives >= 0 && nbReponsesEffectives <= 5) {
 
     document.getElementById("messageInexploitable").style.display = "block";
 
-    // Redirection vers la page "Test inexploitable"
     document.getElementById("btnContinuer").onclick = function() {
-        window.location.href = "Interpretations/Resultat-Inexploitable.html";
+        window.location.href = "Interpretations/resultat-Inexploitable.html";
     };
 
-} else {
-
-    /* ==========================================================
-       NOUVEAU CAS : POLARISATION + MOBILISATION FAIBLE
-       Conditions :
-       - nb réponses entre 6 et 9 inclus
-       - écart > 60 (&&        ecartOrientation > 60)
-       - intensité globale < 60
-       ========================================================== */
+} else if (nbReponsesEffectives >= 6) {
 
     const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
 
-    console.log("========================================");
-    console.log("TEST NOUVEAU CAS :");
-    console.log("nbReponsesEffectives =", nbReponsesEffectives);
-    console.log("ecartOrientation =", ecartOrientation);
-    console.log("intensiteGlobale =", intensiteGlobale);
-    console.log("========================================");
+    if (ecartOrientation > 60) {
 
-    if (
-        nbReponsesEffectives >= 6 && nbReponsesEffectives <= 9  && ecartOrientation > 60 &&
-        intensiteGlobale < 68
-    ) {
-        document.getElementById("btnContinuer").onclick = function() {
-            window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteFaible.html";
-        };
+        if (intensiteGlobale < 69) {
+            document.getElementById("btnContinuer").onclick = function() {
+                window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteFaible.html";
+            };
+        } else {
+            document.getElementById("btnContinuer").onclick = function() {
+                window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteModeree.html";
+            };
+        }
     }
 
-    // Sinon : on ne touche à rien, le bouton conserve son comportement par défaut.
+    // Sinon : on ne touche à rien
 }
-
 </script>
 
 </body>
