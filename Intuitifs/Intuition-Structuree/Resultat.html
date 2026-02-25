@@ -392,40 +392,35 @@ document.getElementById("debugBox").textContent =
 /* ==========================================================
    CONTRÔLE : TEST INEXPLOITABLE SI 0 À 5 RÉPONSES (INCLUS)
    ========================================================== */
-if (nbReponsesEffectives >= 0 && nbReponsesEffectives <= 5) {
+const bouton = document.getElementById("btnContinuer");
+const msgInexploitable = document.getElementById("messageInexploitable");
 
-    document.getElementById("messageInexploitable").style.display = "block";
+function allerVers(url) {
+  bouton.onclick = () => { window.location.href = url; };
+}
 
-    document.getElementById("btnContinuer").onclick = function() {
-        window.location.href = "Interpretations/Resultat-Inexploitable.html";
-    };
+if (nbReponsesEffectives <= 5) {
+  msgInexploitable.style.display = "block";
+  allerVers("Interpretations/Resultat-Inexploitable.html");
+} else {
+  const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
 
-} else if (nbReponsesEffectives >= 6) {
+  if (ecartOrientation > 60) {
+    let url = "";
 
-    const ecartOrientation = Number(localStorage.getItem("ecartOrientation")) || 0;
-
-    if (ecartOrientation > 60) {
-
-        if (intensiteGlobale < 69) {
-            document.getElementById("btnContinuer").onclick = function() {
-                window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteFaible.html";
-            };
-
-        } else if (intensiteGlobale < 137) {
-            document.getElementById("btnContinuer").onclick = function() {
-                window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteModeree.html";
-            };
-
-        } else {
-            document.getElementById("btnContinuer").onclick = function() {
-                window.location.href = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteForte.html";
-            };
-        }
+    if (intensiteGlobale < 69) {
+      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteFaible.html";
+    } else if (intensiteGlobale < 137) {
+      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteModeree.html";
+    } else if (intensiteGlobale < 205) {
+      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteForte.html";
+    } else {
+      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteTresForte.html";
     }
 
-    // Sinon : on ne touche à rien
-}
-</script>
+    allerVers(url);
+  }
+}</script>
 
 </body>
 </html>
