@@ -268,12 +268,10 @@ header img {
          SECTION PERSONNALISÉE
          ========================================================== -->
     <div class="section">
-    <h3>Installer progressivement un dialogue plus équilibré</h3>
-
-    <p>
-    Votre dynamique actuelle montre une prédominance nette de la rigueur, avec un niveau d’engagement très élevé. L’enjeu n’est pas de renoncer à vos appuis structurants, mais d’éviter qu’ils ne prennent toute la place. À ce niveau d’intensité, l’objectif est de préserver votre efficacité tout en réintroduisant volontairement une marge d’ouverture : tester, explorer, ajuster, sans attendre un contrôle total.
-</p>
-
+       <h3 id="titreAjustement"></h3>
+       <div id="blocAjustement"></div>
+    
+    
     <h4>Appuis fortement mobilisés :</h4>
     <ul>
         <li id="surinvesti">–</li>
@@ -385,7 +383,14 @@ dynamique:`
 <p>Dans la configuration actuelle, la rigueur constitue l’unique point d’appui dans la prise de décision et l’organisation de l’action. Les repères concrets, la vérification et la stabilité deviennent l’ossature permanente du fonctionnement, avec une recherche de cohérence et de maîtrise très marquée.</p>
         <p>En revanche, le registre intuitif n'est pas engagé dans ce processus. La projection vers des scénarios alternatifs, la mise en perspective globale ou l’association d’idées ne semblent pas mobilisées.</p>
         <p>Cette organisation crée une cohérence interne très forte, mais elle repose sur une seule énergie, mobilisée de manière continue. Sans contrepoids intuitif, l’ajustement aux situations complexes peut devenir plus difficile : le fonctionnement gagne en contrôle ce qu’il peut perdre en souplesse, en créativité appliquée et en capacité à changer d’angle rapidement.</p>
-`
+`,
+titreAjustement:"Installer progressivement un dialogue plus équilibré",
+
+ajustement:`
+<p>
+Votre dynamique actuelle montre une prédominance nette de la rigueur, avec un niveau d’engagement très élevé. L’enjeu n’est pas de renoncer à vos appuis structurants, mais d’éviter qu’ils ne prennent toute la place. À ce niveau d’intensité, l’objectif est de préserver votre efficacité tout en réintroduisant volontairement une marge d’ouverture : tester, explorer, ajuster, sans attendre un contrôle total.
+</p>
+`,
 }
 },
 
@@ -396,7 +401,7 @@ condition:(g,d)=> g >= 205 && d > 0 && d < 68,
 
 textes:{
 equilibre:`
-<p>Votre fonctionnement repose actuellement sur une rigueur très largement dominante, tandis que le pôle intuitif commence à apparaître sans encore exercer d’influence déterminante sur votre manière d’agir. L’écart important entre les deux dynamiques traduit une polarisation toujours nette : la stabilité, la méthode et le cadre demeurent les repères principaux dans la prise de décision et l’organisation de l’action. Toutefois, contrairement à une configuration totalement univoque, l’intuition n’est plus absente ; elle se manifeste de façon ponctuelle, introduisant des perceptions nouvelles qui restent encore contenues par le besoin de cohérence et de maîtrise.</p>
+<p>Votre fonctionnement repose actuellement sur une rigueur très largement dominante, tandis que le pôle intuitif commence à apparaître sans encore exercer d’influence déterminante sur votre manière d’agir. L’écart important entre les deux dynamiques traduit une polarisation nette : la stabilité, la méthode et le cadre demeurent les repères principaux dans la prise de décision et l’organisation de l’action. Toutefois, contrairement à une configuration totalement univoque, l’intuition n’est plus absente ; elle se manifeste de façon ponctuelle, introduisant des perceptions nouvelles qui restent encore contenues par le besoin de cohérence et de maîtrise.</p>
 
 <p>Cette lecture est nuancée par les niveaux d’intensité relevés. L’énergie engagée reste élevée et confirme que la rigueur constitue toujours le moteur central du fonctionnement, soutenant une recherche constante de fiabilité, de contrôle et de sécurisation des choix. Néanmoins, la mobilisation partielle du registre intuitif ouvre progressivement un espace d’exploration : certaines situations peuvent désormais être envisagées avec davantage de recul ou de projection, même si ces apports ne modifient pas encore profondément les modes d’action habituels.</p>
 
@@ -411,7 +416,47 @@ dynamique:`
 
 <p>Le registre intuitif commence toutefois à apparaître sans encore participer pleinement à la régulation des décisions. La projection vers des scénarios alternatifs ou la mise en perspective globale peut émerger par moments, mais ces apports restent secondaires face au besoin de sécurisation et de contrôle.</p>
 
-<p>Cette organisation conserve une cohérence interne forte, majoritairement soutenue par une même dynamique structurante. L’intuition introduit désormais des possibilités d’ajustement, sans encore constituer un véritable contrepoids. Le fonctionnement gagne ainsi en stabilité ce qu’il peut encore perdre en souplesse ou en rapidité d’adaptation lorsque les situations exigent un changement d’angle plus marqué.</p>`
+<p>Cette organisation conserve une cohérence interne forte, majoritairement soutenue par une même dynamique structurante. L’intuition introduit désormais des possibilités d’ajustement, sans encore constituer un véritable contrepoids. Le fonctionnement gagne ainsi en stabilité ce qu’il peut encore perdre en souplesse ou en rapidité d’adaptation lorsque les situations exigent un changement d’angle plus marqué.</p>`,
+
+titreAjustement:"Installer progressivement un dialogue plus équilibré",
+
+ajustement:`
+<p>
+Votre dynamique actuelle montre une prédominance nette de la rigueur, avec un niveau d’engagement très élevé. L’enjeu n’est pas de renoncer à vos appuis structurants, mais d’éviter qu’ils ne prennent toute la place. À ce niveau d’intensité, l’objectif est de préserver votre efficacité tout en réintroduisant volontairement une marge d’ouverture : tester, explorer, ajuster, sans attendre un contrôle total.
+</p>,
+`
+}
+},
+
+{
+id:"rigueurForte_intuitionModeree",
+
+condition:(g,d)=> g < 205 && d < 69,
+
+textes:{
+equilibre:`
+<p>Votre fonctionnement s’appuie principalement sur une rigueur fortement mobilisée, qui constitue le repère central dans votre manière d’analyser les situations, de prendre des décisions et d’organiser l’action. L’écart entre les deux dynamiques est important : la stabilité, la méthode et la recherche de cohérence structurent prioritairement votre positionnement face aux enjeux rencontrés. Le registre intuitif est présent, mais il intervient de façon secondaire, sans orienter directement la conduite générale de l’action.</p>
+<p>Les niveaux d’intensité relevés traduisent un engagement élevé dans le maintien d’un cadre fiable et maîtrisé. La rigueur soutient ici une attention constante portée à la sécurisation des choix, à la vérification des informations et à la réduction de l’incertitude. L’intuition participe néanmoins à la perception des situations en apportant ponctuellement des angles de lecture complémentaires ou des perspectives élargies, même si ces apports restent intégrés à l’intérieur d’un fonctionnement majoritairement structuré.</p>
+<p>Le contraste avec les choix symboliques prend alors une signification particulière. Le choix de la Suisse reflète l’importance accordée à la solidité et à la stabilité, tandis que la présence de Léonard de Vinci évoque l’existence d’une sensibilité tournée vers l’exploration, la projection et la créativité. Cette dimension ne constitue pas le moteur principal du fonctionnement, mais elle introduit une capacité à envisager différentes possibilités sans remettre en cause la recherche globale de cohérence.</p>
+<p>On observe ainsi une posture de cadrage fortement affirmée, dans laquelle l’action demeure orientée vers la maîtrise et la fiabilité de l’exécution. Le bénéfice réside dans une grande constance et une capacité élevée à structurer durablement les situations. Le point de vigilance tient toutefois à l’équilibre entre contrôle et adaptation : lorsque des perceptions plus intuitives émergent, leur intégration peut rester limitée par le besoin de sécurité méthodologique, ce qui peut ralentir certains ajustements lorsque le contexte exige davantage de souplesse ou de changement d’angle.</p>
+`,
+
+titreDynamique:"Une dynamique encore structurante",
+
+dynamique:`
+<p>Dans la configuration actuelle, la rigueur constitue un repère important dans la prise de décision et l’organisation de l’action, sans toutefois s’imposer comme un mode de fonctionnement exclusif. Les repères concrets, la recherche de cohérence et le besoin de stabilité continuent d’orienter largement votre manière d’aborder les situations, tout en laissant apparaître une variabilité plus grande dans les modes d’ajustement mobilisés.</p>
+<p>Le registre intuitif demeure présent de façon modérée et intervient principalement comme un appui ponctuel dans la perception des situations. La mise en perspective globale ou l’exploration d’alternatives peut émerger selon les contextes, mais ces apports ne structurent pas encore pleinement la régulation des décisions, qui restent majoritairement guidées par le souci de fiabilité et de maîtrise.</p>
+<p>Cette organisation produit un fonctionnement relativement stable, reposant sur des repères structurants tout en intégrant, par moments, des ouvertures perceptives complémentaires. Aucun des deux pôles ne s’impose de manière dominante, mais leur mobilisation demeure inégale. Le fonctionnement bénéficie ainsi d’une certaine solidité, tout en pouvant rencontrer des limites d’adaptation lorsque les situations nécessitent une coordination plus fluide entre analyse structurée et lecture intuitive.</p>
+`,
+
+titreAjustement:"Installer progressivement un dialogue plus équilibré",
+
+ajustement:`
+<p>
+Votre dynamique actuelle repose sur des repères structurants encore largement guidés par la rigueur, tout en laissant apparaître une mobilisation plus discrète du registre intuitif. L’enjeu n’est pas de modifier vos appuis existants, mais de favoriser une articulation plus fluide entre stabilité et ouverture. Dans cette configuration, l’objectif consiste à maintenir l’efficacité acquise tout en développant progressivement une capacité d’ajustement : explorer différentes approches, tester de nouvelles perspectives et intégrer davantage les informations émergentes sans rechercher systématiquement un contrôle complet en amont.
+</p>
+`,
+
 }
 },
 
@@ -589,7 +634,16 @@ configurationActive.textes.titreDynamique;
 
 /* dynamique */
 document.getElementById("blocDynamique").innerHTML =
-configurationActive.textes.dynamique;</script>
+configurationActive.textes.dynamique;
 
+/* ===== AJUSTEMENT ===== */
+
+document.getElementById("titreAjustement").textContent =
+configurationActive.textes.titreAjustement;
+
+document.getElementById("blocAjustement").innerHTML =
+configurationActive.textes.ajustement;
+
+</script>
 </body>
 </html>
