@@ -360,11 +360,26 @@ header img {
 
   const libelleEcartEl = document.getElementById("libelleEcart");
 
-  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
-     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
-  } else {
-     libelleEcartEl.textContent = " – Dynamique polarisée";
-  }
+  if (ecartOrientation < 10) {
+    libelleEcartEl.textContent =
+    " – Équilibre fort : la rigueur et l’intuition coopèrent naturellement";
+}
+else if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+    libelleEcartEl.textContent =
+    " – Dynamique de soutien : la rigueur structure l’intuition";
+}
+else if (ecartOrientation >= 25 && ecartOrientation <= 39) {
+    libelleEcartEl.textContent =
+    " – Dynamique orientée : la rigueur guide majoritairement l’action";
+}
+else if (ecartOrientation >= 40 && ecartOrientation <= 59) {
+    libelleEcartEl.textContent =
+    " – Dynamique accentuée : la rigueur domine le fonctionnement";
+}
+else {
+    libelleEcartEl.textContent =
+    " – Dynamique polarisée : l’intuition ne participe pas à l'équilibre";
+}
 
   const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
   const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
