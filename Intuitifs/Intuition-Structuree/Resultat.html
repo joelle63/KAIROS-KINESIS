@@ -175,23 +175,23 @@ DEBUG (temporaire) : en attente de données...
         </tr>
         <tr>
             <td>La logique</td><td>Elle vous permet d’analyser les situations avec rigueur et cohérence. Trop dominante, elle peut toutefois restreindre l’exploration d’approches moins linéaires ou plus intuitives.</td><td></td><td>5</td><td></td><td></td>
-            <td>L'intuition</td><td>F</td><td>Votre analyse guide fortement vos décisions. Lui accorder une écoute plus attentive introduirait davantage de spontanéité dans vos actions.</td><td>10</td><td></td><td></td>
+            <td>L'intuition</td><td>F</td><td>Votre analyse guide fortement vos décisions. Accorder plus d'attention à votre intuition introduirait davantage de spontanéité dans vos actions.</td><td>10</td><td></td><td></td>
         </tr>
         <tr>
             <td>L'ordre</td><td>Il crée des repères stables et sécurisants. Trop prédominant, il peut cependant réduire la place laissée à l’improvisation et à la spontanéité.</td><td></td><td>6</td><td></td><td></td>
-            <td>Synthétique</td><td></td><td></td><td>7</td><td></td><td></td>
+            <td>La synthèse</td><td></td><td>Mobiliser davantage votre capacité de synthèse faciliterait la mise en cohérence de vos perceptions et de vos réflexions, pour gagner en clarté et en efficacité décisionnelle.</td><td>7</td><td></td><td></td>
         </tr>
         <tr>
             <td>L'organisation</td><td>Elle structure efficacement votre action et vous apporte clarté et efficacité. Elle gagne à rester souple lorsque le contexte évolue.</td><td></td><td>7</td><td></td><td></td>
-            <td>Contemplatif</td><td></td><td></td><td>3</td><td></td><td></td>
+            <td>La réfléxion</td><td></td><td>La mobiliser davantage aiderait à ralentir la décision immédiate pour laisser émerger des choix plus ajustés aux situations rencontrées.</td><td>3</td><td></td><td></td>
         </tr>
         <tr>
-            <td>Prévoyant</td><td></td><td></td><td>3</td><td></td><td></td>
-            <td>Observateur</td><td></td><td></td><td>4</td><td></td><td></td>
+            <td>La prévoyance</td><td>Elle vous aide à anticiper les difficultés et à préparer vos actions avec méthode. Trop présente, elle peut toutefois retarder la décision en cherchant à tout sécuriser à l’avance.</td><td></td><td>3</td><td></td><td></td>
+            <td>L'observation</td><td></td><td>Prendre le temps d’observer une situation avant d’agir permettrait de mieux en saisir les dynamiques et les éléments essentiels.</td><td>4</td><td></td><td></td>
         </tr>
         <tr>
             <td>La perséverance</td><td>Solide et constante, elle vous permet de maintenir le cap. Elle peut toutefois vous amener à prolonger une trajectoire au-delà de ce qui reste réellement pertinent.</td><td></td><td>8</td><td></td><td></td>
-            <td>Analytique</td><td></td><td></td><td>8</td><td></td><td></td>
+            <td>L'analyse</td><td></td><td>La développer davantage aiderait à clarifier vos intuitions et à transformer plus facilement vos perceptions en décisions concrètes.</td><td>8</td><td></td><td></td>
         </tr>
         <tr>
             <td>L'objectivité</td><td>Elle vous permet de prendre du recul et d’analyser les faits avec précision. Elle peut toutefois laisser peu de place aux perceptions plus sensibles ou intuitives.</td><td></td><td>4</td><td></td><td></td>
@@ -199,11 +199,11 @@ DEBUG (temporaire) : en attente de données...
         </tr>
         <tr>
             <td>Calme</td><td></td><td></td><td>1</td><td></td><td></td>
-            <td>Lucide</td><td></td><td></td><td>5</td><td></td><td></td>
+            <td>La lucidité</td><td></td><td>Prendre davantage de recul face aux situations permettrait d’en percevoir plus clairement les enjeux avant de décider comment agir.</td><td>5</td><td></td><td></td>
         </tr>
         <tr>
             <td>Précis</td><td></td><td></td><td>2</td><td></td><td></td>
-            <td>Réceptif</td><td></td><td></td><td>2</td><td></td><td></td>
+            <td>La réceptivité</td><td></td><td>Prendre le temps d’accueillir les informations ou les ressentis favoriserait une compréhension plus complète avant de réagir.</td><td>2</td><td></td><td></td>
         </tr>
     </tbody>
 </table>
@@ -410,13 +410,29 @@ if (nbReponsesEffectives <= 5) {
     let url = "";
 
     if (intensiteGlobale < 69) {
-      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteFaible.html";
+      url = "Interpretations/Gauche/Polarisee/GdynamiquePolarisee-IntensiteFaible.html";
     } else if (intensiteGlobale < 137) {
-      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteModeree.html";
+      url = "Interpretations/Gauche/Polarisee/GdynamiquePolarisee-IntensiteModeree.html";
     } else if (intensiteGlobale < 205) {
-      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteForte.html";
+      url = "Interpretations/Gauche/Polarisee/GdynamiquePolarisee-IntensiteForte.html";
     } else {
-      url = "Interpretations/Gauche/GdynamiquePolarisee-IntensiteTresForte.html";
+      url = "Interpretations/Gauche/Polarisee/GdynamiquePolarisee-IntensiteTresForte.html";
+    }
+
+    allerVers(url);
+  }
+
+  if (ecartOrientation > 39 && ecartOrientation < 60) {
+    let url = "";
+
+    if (intensiteGlobale < 69) {
+      url = "Interpretations/Gauche/Accentuee/GdynamiqueAccentuee-IntensiteFaible.html";
+    } else if (intensiteGlobale < 137) {
+      url = "Interpretations/Gauche/Accentuee/GdynamiqueAccentuee-IntensiteModeree.html";
+    } else if (intensiteGlobale < 205) {
+      url = "Interpretations/Gauche/Accentuee/GdynamiqueAccentuee-IntensiteForte.html";
+    } else {
+      url = "Interpretations/Gauche/Accentuee/GdynamiqueAccentuee-IntensiteTresForte.html";
     }
 
     allerVers(url);

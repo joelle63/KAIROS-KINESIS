@@ -218,7 +218,7 @@ header img {
 <!-- ===== METRICS + IMAGES ===== -->
 <section class="metrics-row">
 
-     <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Marie Curie">
+     <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Léonard de Vinci">
 
     <div class="metrics">
         <p>
@@ -245,9 +245,7 @@ header img {
 </p>
 
     </div>
-
-       <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Léonard de Vinci">
-
+       <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Marie Curie">
 </section>
 
 <!-- ===== TEXTE ===== -->
@@ -332,7 +330,7 @@ header img {
 
 <!-- ===== NOUVEAUX BOUTONS AJOUTÉS ===== -->
 <div class="bottom-buttons">
-    <button onclick="window.location.href='../../../../index.html'">Faire un autre test</button>
+    <button onclick="window.location.href='../../../../../index.html'">Faire un autre test</button>
     <button onclick="alert('Page en cours de développement')">Autre</button>
     <button onclick="alert('Page en cours de développement')">Découvrir des figures ayant pu incarner cette dynamique</button>
 
@@ -353,11 +351,26 @@ header img {
 
   const libelleEcartEl = document.getElementById("libelleEcart");
 
-  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
-     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
-  } else {
-     libelleEcartEl.textContent = " – Dynamique polarisée";
-  }
+  if (ecartOrientation < 10) {
+    libelleEcartEl.textContent =
+    " – Équilibre fort : la rigueur et l’intuition coopèrent naturellement";
+}
+else if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+    libelleEcartEl.textContent =
+    " – Dynamique de soutien : la rigueur structure l’intuition";
+}
+else if (ecartOrientation >= 25 && ecartOrientation <= 39) {
+    libelleEcartEl.textContent =
+    " – Dynamique orientée : la rigueur guide majoritairement l’action";
+}
+else if (ecartOrientation >= 40 && ecartOrientation <= 59) {
+    libelleEcartEl.textContent =
+    " – Dynamique accentuée : la rigueur domine le fonctionnement";
+}
+else {
+    libelleEcartEl.textContent =
+    " – Dynamique polarisée : l’intuition ne participe pas à l'équilibre";
+}
 
   const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
   const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
@@ -576,10 +589,9 @@ tableRows.forEach(row => {
 
     if (!libelle) return;
 
-    // Exclure les capacités pleinement mobilisées
-    if (intensite >= 3) return;
-
-    const priorite = (valeur * 3) - intensite;
+/* On conserve toutes les capacités
+   La priorité gère naturellement la sélection */
+const priorite = (valeur * 3) - intensite;
 
     freins.push({ libelle, phrase, intensite, valeur, priorite });
 });
