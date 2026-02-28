@@ -212,7 +212,7 @@ header img {
 </header>
 
 <section class="subtitle">
-    <h2>Vos résultats révèlent une dynamique fortement orientée vers la rigueur.</h2>
+    <h2>Vos résultats révèlent une dynamique clairement orientée vers la rigueur et activement investie.</h2>
 </section>
 
 <!-- ===== METRICS + IMAGES ===== -->
@@ -257,15 +257,15 @@ header img {
     <div class="section">
         <h3>Votre équilibre actuel</h3>
         <p>Votre fonctionnement repose actuellement sur une rigueur totalement dominante, sans mobilisation observable du pôle intuitif. L’écart maximal entre les deux dynamiques dessine une polarisation nette : la stabilité, la méthode et le cadre constituent ici l’unique point d’appui dans la manière d’agir et de se positionner. Dans ce type de configuration, la rigueur ne joue plus un rôle de soutien ; elle devient le mode de fonctionnement principal, sans activation de la vision globale ni de l’exploration.</p>
-        <p>Cette lecture est toutefois à nuancer par les niveaux d’intensité relevés. L’énergie globale engagée reste modérée : la rigueur est présente mais peu expansive, et l’intuition apparaît totalement inactive dans les réponses. Cela suggère un fonctionnement davantage orienté vers le maintien du cadre que vers l’initiative ou l’expansion.</p>
+        <p>Cette lecture est toutefois à nuancer par les niveaux d’intensité relevés. L’énergie engagée traduit un investissement réel dans cette dynamique. La rigueur ne se limite pas à maintenir le cadre : elle structure activement vos décisions et votre manière d’agir, tandis que l’intuition demeure en retrait.</p>
         <p>Le contraste avec les choix symboliques mérite attention. Le choix de la Suisse confirme l’attrait pour la fiabilité et la structure, tandis que la présence de Léonard de Vinci suggère qu’un registre intuitif et créatif demeure symboliquement investi, bien qu’il ne soit pas mobilisé dans le fonctionnement actuel.</p>
-        <p>On observe ainsi une posture de sécurité et de cadrage, dans laquelle l’action se concentre sur ce qui est maîtrisable et contrôlable. Cette configuration peut correspondre à une phase de stabilisation, où la priorité consiste à contenir et sécuriser avant d’élargir progressivement le registre disponible.</p>
+        <p>On observe ainsi une posture de sécurité et de cadrage, dans laquelle l’action se concentre sur ce qui est maîtrisable et contrôlable. Cette configuration traduit une volonté affirmée d’organiser, de cadrer et de maîtriser. La priorité n’est pas seulement de sécuriser, mais de structurer les choses de manière cohérente.</p>
     </div>
 
     <div class="section">
         <h3>Une dynamique univoque</h3>
-        <p>Dans la configuration actuelle, la rigueur constitue l’unique point d’appui dans la prise de décision et l’organisation de l’action. Les repères concrets, la vérification et la stabilité structurent l’ensemble du fonctionnement.</p>
-        <p>En revanche, le registre intuitif ne participe pas à ce processus. La projection vers des scénarios alternatifs, la mise en perspective globale ou l’association d’idées ne semblent pas mobilisées.</p>
+        <p>Dans la configuration actuelle, la rigueur constitue l’unique point d’appui dans la prise de décision et l’organisation de l’action. Les repères concrets, la vérification et la stabilité participent activement à votre mode de fonctionnement.</p>
+        <p>En revanche, le registre intuitif n'est pas engagé dans ce processus. La projection vers des scénarios alternatifs, la mise en perspective globale ou l’association d’idées ne semblent pas mobilisées.</p>
         <p>Cette organisation crée une cohérence interne, mais elle repose sur une seule énergie. Lorsque le dialogue entre rigueur et intuition ne s’installe pas, l’ajustement aux situations complexes peut devenir plus limité.</p>
     </div>
 
@@ -309,7 +309,7 @@ header img {
           <li>Lorsque l’environnement exige de décider rapidement sans disposer de données suffisantes ou de garanties concrètes.</li>
           <li>Dans des situations mouvantes, ambiguës ou imprévisibles, où les règles évoluent fréquemment.</li>
           <li>Face à des demandes de vision globale ou créative, alors que l’attention reste centrée sur la sécurisation des détails.</li>
-          <li>Si le besoin de contrôle ralentit l’action ou empêche l’expérimentation progressive.</li>
+          <li>Si le besoin de contrôle devient trop important et réduit la capacité d’adaptation.</li>
           <li>Lorsque la prudence se transforme en évitement, différant indéfiniment une décision par crainte de l’erreur.</li>
           <li>Si le cadre devient trop rigide pour intégrer des éléments nouveaux ou inattendus.</li>
           <li>Lorsque la recherche de stabilité limite l’adaptation et l’évolution nécessaires.</li>
@@ -481,14 +481,16 @@ tableRows.forEach(row => {
    SINON → TRI PAR VALEUR RÉFÉRENTIELLE
 ========================================================== */
 
-if (totalIntensiteDroite > 0) {
-    freins = freins.filter(item => item.intensite > 0);
-    freins.sort((a, b) => b.intensite - a.intensite);
-} else {
-    freins.sort((a, b) => b.valeur - a.valeur);
-}
+let actifs = freins
+    .filter(item => item.intensite > 0)
+    .sort((a, b) => b.intensite - a.intensite);
 
-/* On garde les 4 premiers */
+let inactifs = freins
+    .filter(item => item.intensite === 0)
+    .sort((a, b) => b.valeur - a.valeur);
+
+freins = actifs.concat(inactifs);
+
 const topFreins = freins.slice(0, 4);
 /* ==========================================================
    INJECTION DANS LES LISTES

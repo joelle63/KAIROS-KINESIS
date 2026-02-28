@@ -574,10 +574,9 @@ tableRows.forEach(row => {
 
     if (!libelle) return;
 
-    // Exclure les capacités pleinement mobilisées
-    if (intensite >= 3) return;
-
-    const priorite = (valeur * 3) - intensite;
+/* On conserve toutes les capacités
+   La priorité gère naturellement la sélection */
+const priorite = (valeur * 3) - intensite;
 
     freins.push({ libelle, phrase, intensite, valeur, priorite });
 });

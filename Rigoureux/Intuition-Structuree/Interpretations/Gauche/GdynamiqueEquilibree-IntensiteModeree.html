@@ -212,14 +212,13 @@ header img {
 </header>
 
 <section class="subtitle">
-    <h2>XXXXXXXXXXXX</h2>
+    <h2>Dynamique équilibrée, Intensité modérée</h2>
 </section>
 
 <!-- ===== METRICS + IMAGES ===== -->
 <section class="metrics-row">
 
-    <!-- IMAGE GAUCHE : conditionnée par le pays -->
-    <img id="imageGauche" src="Images/Rigueur-Methodique.png" class="avatar" alt="">
+    <img src="Images/Rigueur-Methodique.png" class="avatar" alt="Léonard de Vinci">
 
     <div class="metrics">
         <p>
@@ -234,21 +233,20 @@ header img {
        <span id="libelleEcart"></span>
        </p>
 
-        <p>
-          <strong>Intensité :</strong>
-          Intuition <span id="pointsIntuition">0</span> points /
-          Rigueur <span id="pointsRigueur">0</span> points
-        </p>
+<p>
+  <strong>Intensité :</strong>
+  Intuition <span id="pointsIntuition">0</span> points /
+  Rigueur <span id="pointsRigueur">0</span> points
+</p>
 
-        <p>
-          <strong>Engagement total :</strong>
-          <span id="engagementTotal">0</span> points
-        </p>
+<p>
+  <strong>Engagement total :</strong>
+  <span id="engagementTotal">0</span> points
+</p>
 
     </div>
 
-    <!-- IMAGE DROITE : fixe -->
-    <img src="Images/Rigueur-Methodique.png" class="avatar" alt="">
+    <img src="Images/Intuition-Conceptuelle.png" class="avatar" alt="Marie Curie">
 
 </section>
 
@@ -283,6 +281,9 @@ header img {
         </ul>
     </div>
 
+    <!-- ==========================================================
+         SECTION PERSONNALISÉE
+         ========================================================== -->
     <div class="section">
         <h3>Les points d'attention qui vous sont propres :</h3>
         <ul>
@@ -291,6 +292,9 @@ header img {
         </ul>
     </div>
 
+    <!-- ==========================================================
+         ZONES DE VIGILANCE
+         ========================================================== -->
     <div class="section">
         <h3>Les zones de vigilance de cette dynamique</h3>
         <p>Cette dynamique fonctionne pleinement lorsqu’elle peut explorer, percevoir et affiner progressivement ce qui émerge. Elle devient plus fragile dans certains contextes auquels vous avez peut-être déjà été confrontés :</p>
@@ -305,6 +309,9 @@ header img {
        </ul>  
     </div>
 
+    <!-- ==========================================================
+         PLEIN POTENTIEL
+         ========================================================== -->
     <div class="section">
         <h3>Quand cette énergie trouve son plein potentiel, elle permet : </h3>
         <ul>
@@ -313,13 +320,22 @@ header img {
             <li>De voir des solutions non conventionnelles et les transformer en actions concrètes</li>
             <li>De s’exprimer pleinement dans des environnements agiles, où l’expérimentation rapide est possible et valorisée</li>
         </ul>
+        <p></p>
         <h3>C'est une énergie qui favorise la perspicacité tout en gardant le sens des réalité.</h3>
     </div>
 
+<div class="examples-link">
+<!--    <a href="Exemples.html" class="btn-examples">
+        Découvrir des figures ayant pu incarner cette dynamique
+    </a>
+</div>-->
+
+<!-- ===== NOUVEAUX BOUTONS AJOUTÉS ===== -->
 <div class="bottom-buttons">
-    <button id="btnAutreTest">Faire un autre test</button>
+    <button onclick="window.location.href='../../../../index.html'">Faire un autre test</button>
     <button onclick="alert('Page en cours de développement')">Autre</button>
     <button onclick="alert('Page en cours de développement')">Découvrir des figures ayant pu incarner cette dynamique</button>
+
 </div>
 
     <div class="footer-note">
@@ -330,189 +346,139 @@ header img {
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+  // --- Lecture depuis la page test ---
+  const pctRigueur = parseInt(localStorage.getItem("orientationGauche"), 10) || 0;
+  const pctIntuition = parseInt(localStorage.getItem("orientationDroite"), 10) || 0;
+  const ecartOrientation = parseInt(localStorage.getItem("ecartOrientation"), 10) || 0;
 
-    /* ==========================================================
-       RÉCUPÉRATION ROBUSTE DU PAYS (URL puis localStorage)
-       ========================================================== */
+  const libelleEcartEl = document.getElementById("libelleEcart");
 
-    const params = new URLSearchParams(window.location.search);
-    let pays = params.get("pays");
+  if (ecartOrientation >= 10 && ecartOrientation <= 24) {
+     libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
+  } else {
+     libelleEcartEl.textContent = " – à définir";
+  }
 
-    if (!pays || pays.trim() === "") {
-        pays = localStorage.getItem("paysChoisi") || "";
-    }
+  const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
+  const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
 
-    pays = (pays || "").trim().toLowerCase();
+  const engagementTotal = pointsRigueur + pointsIntuition;
 
-    // On sécurise le stockage pour les pages suivantes
-    if (pays !== "") {
-        localStorage.setItem("paysChoisi", pays);
-    }
+  document.getElementById("pctIntuition").textContent = pctIntuition;
+  document.getElementById("pctRigueur").textContent = pctRigueur;
+  document.getElementById("ecartOrientation").textContent = ecartOrientation;
 
-
-    /* ==========================================================
-       CONDITIONNEMENT IMAGE GAUCHE SELON PAYS
-       ========================================================== */
-
-    const imageGauche = document.getElementById("imageGauche");
-
-    if (imageGauche) {
-        if (pays === "suisse") {
-            imageGauche.src = "Images/Rigueur-Methodique.png";
-        } else {
-            imageGauche.src = "Images/Intuition-Conceptuelle.png";
-        }
-    }
+  document.getElementById("pointsIntuition").textContent = pointsIntuition;
+  document.getElementById("pointsRigueur").textContent = pointsRigueur;
+  document.getElementById("engagementTotal").textContent = engagementTotal;
 
 
-    /* ==========================================================
-       BOUTON "FAIRE UN AUTRE TEST" : transmettre le pays
-       ========================================================== */
+  /* ==========================================================
+     RÉCUPÉRATION DU TABLEAU COMPLET DEPUIS LA PAGE RÉSULTATS
+     ========================================================== */
 
-    const btnAutreTest = document.getElementById("btnAutreTest");
-    if (btnAutreTest) {
-        btnAutreTest.addEventListener("click", () => {
-            window.location.href = "../../../../index.html?pays=" + encodeURIComponent(pays);
-        });
-    }
+  const tableHTML = localStorage.getItem("tableResultatsHTML") || "";
 
+  let tableDoc = null;
+  let tableElement = null;
+  let tableRows = [];
 
-    /* ==========================================================
-       RÉCUPÉRATION DES SCORES (localStorage)
-       ========================================================== */
+  if (tableHTML.trim() !== "") {
+      const parser = new DOMParser();
+      tableDoc = parser.parseFromString(tableHTML, "text/html");
+      tableElement = tableDoc.querySelector("table");
 
-    const pctRigueur = parseInt(localStorage.getItem("orientationGauche"), 10) || 0;
-    const pctIntuition = parseInt(localStorage.getItem("orientationDroite"), 10) || 0;
-    const ecartOrientation = parseInt(localStorage.getItem("ecartOrientation"), 10) || 0;
-
-    const libelleEcartEl = document.getElementById("libelleEcart");
-
-    if (ecartOrientation >= 10 && ecartOrientation <= 24) {
-        libelleEcartEl.textContent = " – Dynamique de soutient : la rigueur structure l'intution";
-    } else {
-        libelleEcartEl.textContent = " – à définir";
-    }
-
-    const pointsRigueur = parseInt(localStorage.getItem("intensiteGauche"), 10) || 0;
-    const pointsIntuition = parseInt(localStorage.getItem("intensiteDroite"), 10) || 0;
-
-    const engagementTotal = pointsRigueur + pointsIntuition;
-
-    document.getElementById("pctIntuition").textContent = pctIntuition;
-    document.getElementById("pctRigueur").textContent = pctRigueur;
-    document.getElementById("ecartOrientation").textContent = ecartOrientation;
-
-    document.getElementById("pointsIntuition").textContent = pointsIntuition;
-    document.getElementById("pointsRigueur").textContent = pointsRigueur;
-    document.getElementById("engagementTotal").textContent = engagementTotal;
+      if (tableElement) {
+          tableRows = tableElement.querySelectorAll("tbody tr");
+      }
+  }
 
 
-    /* ==========================================================
-       RÉCUPÉRATION DU TABLEAU COMPLET DEPUIS LA PAGE RÉSULTATS
-       ========================================================== */
+  /* ==========================================================
+     HELPERS
+     ========================================================== */
 
-    const tableHTML = localStorage.getItem("tableResultatsHTML") || "";
-
-    let tableDoc = null;
-    let tableElement = null;
-    let tableRows = [];
-
-    if (tableHTML.trim() !== "") {
-        const parser = new DOMParser();
-        tableDoc = parser.parseFromString(tableHTML, "text/html");
-        tableElement = tableDoc.querySelector("table");
-
-        if (tableElement) {
-            tableRows = tableElement.querySelectorAll("tbody tr");
-        }
-    }
+  const getText = (cell) => (cell && cell.textContent ? cell.textContent.trim() : "");
+  const toInt = (txt, fallback = 0) => {
+      const s = (txt ?? "").toString().trim();
+      if (s === "") return fallback;
+      const n = parseInt(s, 10);
+      return Number.isFinite(n) ? n : fallback;
+  };
 
 
-    /* ==========================================================
-       HELPERS
-       ========================================================== */
+  /* ==========================================================
+     ATOUT :
+     Partie GAUCHE uniquement = intensité max
+     ========================================================== */
 
-    const getText = (cell) => (cell && cell.textContent ? cell.textContent.trim() : "");
-    const toInt = (txt, fallback = 0) => {
-        const s = (txt ?? "").toString().trim();
-        if (s === "") return fallback;
-        const n = parseInt(s, 10);
-        return Number.isFinite(n) ? n : fallback;
-    };
+  let meilleurAtoutGauche = "";
+  let meilleureIntensiteGauche = -Infinity;
 
+  tableRows.forEach(row => {
+      const cells = row.cells;
+      if (!cells || cells.length < 12) return;
 
-    /* ==========================================================
-       ATOUT : Partie GAUCHE uniquement = intensité max
-       ========================================================== */
+      const texteG = getText(cells[0]);
+      const atoutG = getText(cells[1]) || texteG;
+      const intensiteG = toInt(getText(cells[4]), 0);
 
-    let meilleurAtoutGauche = "";
-    let meilleureIntensiteGauche = -Infinity;
-
-    tableRows.forEach(row => {
-        const cells = row.cells;
-        if (!cells || cells.length < 12) return;
-
-        const texteG = getText(cells[0]);
-        const atoutG = getText(cells[1]) || texteG;
-        const intensiteG = toInt(getText(cells[4]), 0);
-
-        if (atoutG && intensiteG > meilleureIntensiteGauche) {
-            meilleureIntensiteGauche = intensiteG;
-            meilleurAtoutGauche = atoutG;
-        }
-    });
+      if (atoutG && intensiteG > meilleureIntensiteGauche) {
+          meilleureIntensiteGauche = intensiteG;
+          meilleurAtoutGauche = atoutG;
+      }
+  });
 
 
-    /* ==========================================================
-       FREIN : Partie DROITE uniquement = intensité max
-       ========================================================== */
+  /* ==========================================================
+     FREIN (AVEC BONUS) :
+     Partie DROITE uniquement = intensité max
+     ========================================================== */
 
-    let capaciteFreinDetectee = "";
-    let freinDetecte = "";
+  let capaciteFreinDetectee = "";
+  let freinDetecte = "";
 
-    let meilleureIntensiteDroite = -Infinity;
-    let meilleureValeurDroite = -Infinity;
+  let meilleureIntensiteDroite = -Infinity;
+  let meilleureValeurDroite = -Infinity;
 
-    tableRows.forEach(row => {
-        const cells = row.cells;
-        if (!cells || cells.length < 12) return;
+  tableRows.forEach(row => {
+      const cells = row.cells;
+      if (!cells || cells.length < 12) return;
 
-        const texteD = getText(cells[6]);
-        const freinD = getText(cells[8]);
-        const valD = toInt(getText(cells[9]), 0);
-        const intD = toInt(getText(cells[10]), 0);
+      const texteD = getText(cells[6]);
+      const freinD = getText(cells[8]);
+      const valD = toInt(getText(cells[9]), 0);
+      const intD = toInt(getText(cells[10]), 0);
 
-        if (!texteD) return;
+      if (!texteD) return;
 
-        if (intD > meilleureIntensiteDroite) {
-            meilleureIntensiteDroite = intD;
-            meilleureValeurDroite = valD;
-            capaciteFreinDetectee = texteD;
-            freinDetecte = freinD || "";
-            return;
-        }
+      if (intD > meilleureIntensiteDroite) {
+          meilleureIntensiteDroite = intD;
+          meilleureValeurDroite = valD;
+          capaciteFreinDetectee = texteD;
+          freinDetecte = freinD || "";
+          return;
+      }
 
-        if (intD === meilleureIntensiteDroite && valD > meilleureValeurDroite) {
-            meilleureValeurDroite = valD;
-            capaciteFreinDetectee = texteD;
-            freinDetecte = freinD || "";
-        }
-    });
+      if (intD === meilleureIntensiteDroite && valD > meilleureValeurDroite) {
+          meilleureValeurDroite = valD;
+          capaciteFreinDetectee = texteD;
+          freinDetecte = freinD || "";
+      }
+  });
 
-    const freinFinal = freinDetecte
-        ? freinDetecte
-        : (capaciteFreinDetectee ? "(Frein non renseigné pour : " + capaciteFreinDetectee + ")" : "–");
+  const freinFinal = freinDetecte
+      ? freinDetecte
+      : (capaciteFreinDetectee ? "(Frein non renseigné pour : " + capaciteFreinDetectee + ")" : "–");
 
 
-    /* ==========================================================
-       INJECTION DANS LA SECTION PERSONNALISÉE
-       ========================================================== */
+  /* ==========================================================
+     INJECTION DANS LA SECTION PERSONNALISÉE
+     ========================================================== */
 
-    document.getElementById("freinDetecte").textContent = freinFinal;
-    document.getElementById("atoutDetecte").textContent = meilleurAtoutGauche || "–";
+  document.getElementById("freinDetecte").textContent = freinFinal;
+  document.getElementById("atoutDetecte").textContent = meilleurAtoutGauche || "–";
 
-});
 </script>
 
 </body>
